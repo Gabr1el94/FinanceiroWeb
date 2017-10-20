@@ -5,25 +5,29 @@
  */
 package MVC.classes;
 
+import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 /**
  *
  * @author gabriel
  */
-public class Funcionario extends Pessoa{
-    
+@Entity
+public class Funcionario extends Pessoa {
+
+    @Column(nullable = false, insertable = true, updatable = true)
     private int idGerenteResponsavel;
-   
 
     public Funcionario() {
-        
+
     }
 
-    public Funcionario(int idGerenteResponsavel, String nome, String email, String dataNascimento, String cpf, String senha) {
+    public Funcionario(int idGerenteResponsavel, String nome, String email, Calendar dataNascimento, String cpf, String senha) {
         super(nome, email, dataNascimento, cpf, senha);
         this.idGerenteResponsavel = idGerenteResponsavel;
     }
 
-  
     @Override
     public String getNome() {
         return nome;
@@ -33,8 +37,8 @@ public class Funcionario extends Pessoa{
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-@Override
+
+    @Override
     public String getEmail() {
         return email;
     }
@@ -43,29 +47,33 @@ public class Funcionario extends Pessoa{
     public void setEmail(String email) {
         this.email = email;
     }
-    
-@Override
-    public String getDataNascimento() {
+
+    @Override
+    public Calendar getDataNascimento() {
         return dataNascimento;
     }
-    
-@Override
-    public void setDataNascimento(String dataNascimento) {
+
+    @Override
+    public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-@Override
+
+    @Override
     public String getCpf() {
         return cpf;
     }
-@Override
+
+    @Override
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-@Override
+
+    @Override
     public String getSenha() {
         return senha;
     }
-@Override
+
+    @Override
     public void setSenha(String senha) {
         this.senha = senha;
     }
@@ -78,5 +86,3 @@ public class Funcionario extends Pessoa{
         this.idGerenteResponsavel = idGerenteResponsavel;
     }
 }
-    
-

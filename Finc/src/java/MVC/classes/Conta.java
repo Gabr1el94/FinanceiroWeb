@@ -5,16 +5,37 @@
  */
 package MVC.classes;
 
+import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
  * @author gabriel
  */
-public class Conta {
-    
+@Entity
+public class Conta implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Cascade(CascadeType.ALL)
+    @Column(name = "idConta", insertable = true, updatable = true)
     private int id;
+
+    @Column(name = "saldoConta", nullable = false, insertable = true, updatable = true, scale = 2)
     private float saldo;
+
+    @OneToOne
+    @JoinColumn(name = "idGerente", referencedColumnName = "idPessoa", nullable = true, insertable = true)
+    @Cascade(CascadeType.ALL)
     private Gerente gerente;
 
     public Conta() {
@@ -33,8 +54,6 @@ public class Conta {
         this.gerente = gerente;
     }
 
-    
-
     public int getId() {
         return id;
     }
@@ -42,7 +61,6 @@ public class Conta {
     public void setId(int id) {
         this.id = id;
     }
-    
 
     public float getSaldo() {
         return saldo;
@@ -51,7 +69,7 @@ public class Conta {
     public void setSaldo(float saldo) {
         this.saldo = saldo;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -73,10 +91,9 @@ public class Conta {
         return true;
     }
 
-    
     @Override
     public String toString() {
         return "Conta{" + "saldo=" + saldo + ", Titular=" + gerente.getNome() + '}';
     }
-    
+
 }
