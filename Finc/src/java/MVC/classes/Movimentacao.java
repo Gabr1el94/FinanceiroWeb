@@ -5,23 +5,62 @@
  */
 package MVC.classes;
 
+import java.io.Serializable;
+import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 /**
  *
  * @author gabriel
  */
-public class Movimentacao {
-     
+@Entity
+public class Movimentacao implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Cascade(CascadeType.ALL)
+    @Column(name = "idMovimentacao", insertable = true, updatable = true)
     private int id;
     private boolean status;
-    private String dataEmissao, descricao, categoria;
+
+    @Temporal(TemporalType.DATE)
+    @Column(insertable = true, updatable = true, nullable = false)
+    private Calendar dataEmissao = Calendar.getInstance();
+
+    @Column(name = "Descricao", insertable = true, updatable = true, nullable = false, length = 40)
+    private String descricao;
+
+    @Column(name = "Categoria", insertable = true, updatable = true, nullable = false, length = 10)
+    private String categoria;
+
+    @Column(name = "Valor", insertable = true, updatable = true, nullable = false, scale = 2)
     private float valor;
-    private enum Tipo  {Recebimento, Despesa}; 
+
+    @Enumerated(EnumType.STRING)
+    @Column(insertable = true, updatable = true, nullable = false)
+    private Tipo tipo;
+
+    @ManyToOne
+    @JoinColumn(name = "idGerente", referencedColumnName = "idPessoa", nullable = true, insertable = true, updatable = true, unique = false)
+    @Cascade(CascadeType.ALL)
     private Gerente gerente;
 
     public Movimentacao() {
     }
 
-    public Movimentacao(boolean status, String dataEmissao, String descricao, String categoria, float valor, Gerente gerente) {
+    public Movimentacao(boolean status, Calendar dataEmissao, String descricao, String categoria, float valor, Gerente gerente) {
         this.status = status;
         this.dataEmissao = dataEmissao;
         this.descricao = descricao;
@@ -46,11 +85,11 @@ public class Movimentacao {
         this.status = status;
     }
 
-    public String getDataEmissao() {
+    public Calendar getDataEmissao() {
         return dataEmissao;
     }
 
-    public void setDataEmissao(String dataEmissao) {
+    public void setDataEmissao(Calendar dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
 
@@ -90,5 +129,5 @@ public class Movimentacao {
     public String toString() {
         return "Despesas{" + "status=" + status + ", dataEmissao=" + dataEmissao + ", descricao=" + descricao + ", categoria=" + categoria + ", valor=" + valor + ", gerente=" + gerente + '}';
     }
-    
+
 }

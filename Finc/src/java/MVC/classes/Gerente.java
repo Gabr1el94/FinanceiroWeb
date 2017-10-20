@@ -5,13 +5,24 @@
  */
 package MVC.classes;
 
+import java.util.Calendar;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 /**
  *
  * @author gabriel
  */
-public class Gerente extends Pessoa{
-    
-     private Conta conta;
+@Entity
+public class Gerente extends Pessoa {
+
+    @OneToOne
+    @JoinColumn(name = "idConta", referencedColumnName = "idConta", nullable = true, insertable = true, updatable = true)
+    @Cascade(CascadeType.ALL)
+    private Conta conta;
 
     public Gerente() {
     }
@@ -20,12 +31,12 @@ public class Gerente extends Pessoa{
         this.conta = conta;
     }
 
-    public Gerente(Conta conta, String nome, String email, String dataNascimento, String cpf, String senha) {
+    public Gerente(Conta conta, String nome, String email, Calendar dataNascimento, String cpf, String senha) {
         super(nome, email, dataNascimento, cpf, senha);
         this.conta = conta;
     }
-    
-     @Override
+
+    @Override
     public String getNome() {
         return nome;
     }
@@ -34,8 +45,8 @@ public class Gerente extends Pessoa{
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-@Override
+
+    @Override
     public String getEmail() {
         return email;
     }
@@ -44,33 +55,36 @@ public class Gerente extends Pessoa{
     public void setEmail(String email) {
         this.email = email;
     }
-    
-@Override
-    public String getDataNascimento() {
+
+    @Override
+    public Calendar getDataNascimento() {
         return dataNascimento;
     }
-    
-@Override
-    public void setDataNascimento(String dataNascimento) {
+
+    @Override
+    public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-@Override
+
+    @Override
     public String getCpf() {
         return cpf;
     }
-@Override
+
+    @Override
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-@Override
+
+    @Override
     public String getSenha() {
         return senha;
     }
-@Override
+
+    @Override
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
 
     public Conta getConta() {
         return conta;
