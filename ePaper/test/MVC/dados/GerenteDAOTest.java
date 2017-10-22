@@ -5,6 +5,8 @@
  */
 package MVC.dados;
 
+import MVC.classes.Conta;
+import MVC.classes.Funcionario;
 import MVC.classes.Gerente;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,21 +49,41 @@ public class GerenteDAOTest {
     @Test
     public void testInsert() {
         Calendar dataNascimento = Calendar.getInstance();
-        dataNascimento.set(Calendar.YEAR, 1940);
-        dataNascimento.set(Calendar.MONTH, Calendar.FEBRUARY);
-        dataNascimento.set(Calendar.DAY_OF_MONTH, 05);
-        Gerente genTest = new Gerente(1, null, "Fernando Souza", "fern@fern.com", dataNascimento, "103457345", "aaa@123");
-        factoryGerente.insert(genTest);
+        dataNascimento.set(1969, 3, 20);
+        Gerente funcTest = new Gerente(null, "Hugo Vicente", "hVict@yahoo.com", dataNascimento, "123456789", "aaa@123");
+        factoryGerente.insert(funcTest);
+    }
+
+    @Test
+    public void testInsertColl() {
+        List<Gerente> listaGerente = new ArrayList<Gerente>();
+        Calendar dataNascimento = Calendar.getInstance();
+        dataNascimento.set(1980, 7, 16);
+        Gerente funTest = new Gerente(null, "Luiz Kaio", "caio@hotmail.com", dataNascimento, "198765432", "bbb@123");
+        Gerente funTest2 = new Gerente(null, "Marcos Pereira", "pmarc@gmail.com", dataNascimento, "5678901234", "ccc@123");
+        listaGerente.add(funTest);
+        listaGerente.add(funTest2);
+        factoryGerente.insertCollection(listaGerente);
+    }
+
+    @Test
+    public void testGetAll() {
+        List<Gerente> listaGerente;
+        listaGerente = factoryGerente.getAll();
+    }
+
+    @Test
+    public void testRemove() {
+        Gerente gerente = factoryGerente.searchByKey(163840);
+        factoryGerente.remove(gerente);
 
     }
 
     @Test
-    public void testInsertCollection() {
-        List<Gerente> listaGerente = new ArrayList<Gerente>();
-
-        Calendar dataNascimento = Calendar.getInstance();
-
-        Gerente genTest2 = new Gerente(2, null, "Marquinho Vicente", "mcente@gmail.com", dataNascimento, "353256781", "ccc@123");
-        Gerente genTest3 = new Gerente(3, null, "Gerson Loureiro", "loureiro64@hotmail.com", dataNascimento, "176888975", "kkk@123");
+    public void testUpdate() {
+        Gerente gerente = factoryGerente.searchByKey(163841);
+        gerente.setNome("Otávio Dias");
+        factoryGerente.update(gerente);
     }
+
 }

@@ -34,7 +34,7 @@ public class Conta implements Serializable {
     private float saldo;
 
     @OneToOne
-    @JoinColumn(name = "idGerente", referencedColumnName = "idPessoa", nullable = true, insertable = true)
+    @JoinColumn(name = "idGerente", referencedColumnName = "idPessoa", nullable = true, insertable = true, updatable = true)
     @Cascade(CascadeType.ALL)
     private Gerente gerente;
 
