@@ -28,56 +28,6 @@ public class Funcionario extends Pessoa {
         this.idGerenteResponsavel = idGerenteResponsavel;
     }
 
-    @Override
-    public String getNome() {
-        return nome;
-    }
-
-    @Override
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @Override
-    public String getEmail() {
-        return email;
-    }
-
-    @Override
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public Calendar getDataNascimento() {
-        return dataNascimento;
-    }
-
-    @Override
-    public void setDataNascimento(Calendar dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    @Override
-    public String getCpf() {
-        return cpf;
-    }
-
-    @Override
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    @Override
-    public String getSenha() {
-        return senha;
-    }
-
-    @Override
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     public int getIdGerenteResponsavel() {
         return idGerenteResponsavel;
     }
