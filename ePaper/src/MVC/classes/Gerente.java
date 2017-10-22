@@ -31,9 +31,20 @@ public class Gerente extends Pessoa {
         this.conta = conta;
     }
 
-    public Gerente(Conta conta, String nome, String email, Calendar dataNascimento, String cpf, String senha) {
+    public Gerente(int id, Conta conta, String nome, String email, Calendar dataNascimento, String cpf, String senha) {
         super(nome, email, dataNascimento, cpf, senha);
         this.conta = conta;
+        this.id = id;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
