@@ -31,68 +31,56 @@ public class Gerente extends Pessoa {
         this.conta = conta;
     }
 
-    public Gerente(int id, Conta conta, String nome, String email, Calendar dataNascimento, String cpf, String senha) {
+    public Gerente(Conta conta, String nome, String email, Calendar dataNascimento, String cpf, String senha) {
         super(nome, email, dataNascimento, cpf, senha);
         this.conta = conta;
-        this.id = id;
+
     }
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }
 
-    @Override
     public String getNome() {
         return nome;
     }
 
-    @Override
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    @Override
     public String getEmail() {
         return email;
     }
 
-    @Override
     public void setEmail(String email) {
         this.email = email;
     }
 
-    @Override
     public Calendar getDataNascimento() {
         return dataNascimento;
     }
 
-    @Override
     public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    @Override
     public String getCpf() {
         return cpf;
     }
 
-    @Override
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    @Override
     public String getSenha() {
         return senha;
     }
 
-    @Override
     public void setSenha(String senha) {
         this.senha = senha;
     }
