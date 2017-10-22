@@ -46,7 +46,6 @@ public class FuncionarioControle {
         
         return "ok";
         }catch(ExececaoDeNegocio ex){
-            System.out.println(ex.toString());
             return ex.toString();
            
         }
