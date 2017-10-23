@@ -5,6 +5,7 @@
  */
 package MVC.negocio;
 
+import MVC.classes.Conta;
 import MVC.classes.Gerente;
 import MVC.dados.DAOFactory;
 import MVC.dados.GerenteDAO;
@@ -102,8 +103,8 @@ public class GerenteControle {
         if (gerenteTeste.getDataNascimento().equals("") || gerenteTeste.getDataNascimento().equals(null)) {
             throw new ExececaoDeNegocio("Data Nascimento não pode ser Nula", "mensagem_NascimentoNula");
         }
-        Calendar now = new GregorianCalendar();
-        if (gerenteTeste.getDataNascimento().before(now)) {
+
+        if (gerenteTeste.getDataNascimento().equals(Calendar.getInstance())) {
             throw new ExececaoDeNegocio("Data Nascimento não ser inserida com a data atual", "mensagem_NascimentoInvalido");
         }
 
@@ -113,7 +114,6 @@ public class GerenteControle {
         if (gerenteTeste.getConta().equals(0)) {
             throw new ExececaoDeNegocio("A identificação da conta não deve ser igual que zero.", "mensagem_ContaInvalido");
         }
-
         if (!gerenteTeste.getConta().equals(gerenteTeste.getConta())) {
             throw new ExececaoDeNegocio("A identificação da Conta não existe.", "mensagem_ContaInvalido");
         }
