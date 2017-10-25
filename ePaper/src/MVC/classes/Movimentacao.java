@@ -46,10 +46,10 @@ public class Movimentacao implements Serializable {
     private String categoria;
 
     @Column(name = "Valor", insertable = true, updatable = true, nullable = false, scale = 2)
-    private float valor;
+    private double valor;
 
     @Enumerated(EnumType.STRING)
-    @Column(insertable = true, updatable = true, nullable = false)
+    @Column(insertable = true, updatable = true, nullable = true)
     private Tipo tipo;
 
     @ManyToOne
@@ -60,7 +60,7 @@ public class Movimentacao implements Serializable {
     public Movimentacao() {
     }
 
-    public Movimentacao(boolean status, Calendar dataEmissao, String descricao, String categoria, float valor, Gerente gerente) {
+    public Movimentacao(boolean status, Calendar dataEmissao, String descricao, String categoria, double valor) {
         this.status = status;
         this.dataEmissao = dataEmissao;
         this.descricao = descricao;
@@ -109,7 +109,7 @@ public class Movimentacao implements Serializable {
         this.categoria = categoria;
     }
 
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
