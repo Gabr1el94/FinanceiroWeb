@@ -50,7 +50,9 @@ public class GerenteDAOTest {
     public void testInsert() {
         Calendar dataNascimento = Calendar.getInstance();
         dataNascimento.set(1969, 3, 20);
-        Gerente funcTest = new Gerente(null, "Hugo Vicente", "hVict@yahoo.com", dataNascimento, "123456789", "aaa@123");
+        Conta conta = new Conta();
+        conta.setId(1);
+        Gerente funcTest = new Gerente(conta, "Hugo Vicente", "hVict@yahoo.com", dataNascimento, "123456789", "aaa@123");
         factoryGerente.insert(funcTest);
     }
 
