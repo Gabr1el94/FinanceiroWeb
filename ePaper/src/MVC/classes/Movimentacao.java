@@ -125,6 +125,14 @@ public class Movimentacao implements Serializable {
         this.gerente = gerente;
     }
 
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public String toString() {
         return "Despesas{" + "status=" + status + ", dataEmissao=" + dataEmissao + ", descricao=" + descricao + ", categoria=" + categoria + ", valor=" + valor + ", gerente=" + gerente + '}';
