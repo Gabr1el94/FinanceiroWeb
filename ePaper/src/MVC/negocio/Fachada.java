@@ -38,7 +38,7 @@ public class Fachada implements IFachada {
 
     @Override
     public void inserirMovimentacao(Movimentacao movimentacao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controleMovimentacao.inserirMovimentacao(movimentacao);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Fachada implements IFachada {
 
     @Override
     public void atualizarMovimentacao(Movimentacao movimentacao, Movimentacao movimentacao1Atualizada) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controleMovimentacao.atualiarMovimentacao(movimentacao, movimentacao1Atualizada);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class Fachada implements IFachada {
 
     @Override
     public void removerMovimentacao(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controleMovimentacao.removerMovimentacao(id);
     }
 
     @Override
@@ -78,12 +78,12 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Gerente> listarGerentes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return controleGerente.listarGerente();
     }
 
     @Override
     public List<Movimentacao> listarMovimentacao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return controleMovimentacao.listarMovimentacao();
     }
 
 }
