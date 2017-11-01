@@ -6,6 +6,7 @@
 package MVC.negocio;
 
 import MVC.classes.Conta;
+import MVC.classes.Funcionario;
 import MVC.classes.Gerente;
 import MVC.dados.DAOFactory;
 import MVC.dados.GerenteDAO;
@@ -53,6 +54,36 @@ public class GerenteControle {
             return ex.toString();
         }
 
+    }
+
+    public void inserirGerente(Gerente gerenteAdd) {
+
+        setGerenteTeste(gerenteAdd);
+        this.isok();
+        factoryGerente.insert(gerenteTeste);
+
+    }
+
+    public void removerGerente(int id) {
+        Gerente gerenteRemover = factoryGerente.searchByKey(id);
+        factoryGerente.remove(gerenteRemover);
+    }
+
+    public void atualizarGerente(Gerente gerenteLogado, Gerente gerenteAtualizado) {
+        Gerente gerenteModificado = factoryGerente.searchByKey(gerenteLogado.getId());
+
+        gerenteModificado.setConta(gerenteAtualizado.getConta());
+        gerenteModificado.setNome(gerenteAtualizado.getNome());
+        gerenteModificado.setSenha(gerenteAtualizado.getSenha());
+        gerenteModificado.setCpf(gerenteAtualizado.getCpf());
+        gerenteModificado.setEmail(gerenteAtualizado.getEmail());
+        gerenteModificado.setDataNascimento(gerenteAtualizado.getDataNascimento());
+
+        factoryGerente.update(gerenteModificado);
+    }
+
+    public List<Gerente> listarGerente() {
+        return factoryGerente.getAll();
     }
 
     private void testaNome() throws ExcecaoDeNegocio {

@@ -14,7 +14,8 @@ import java.util.List;
  *
  * @author Rodrigo
  */
-public class Fachada implements IFachada{
+public class Fachada implements IFachada {
+
     private FuncionarioControle controleFuncionario;
     private GerenteControle controleGerente;
     private MovimentacaoControle controleMovimentacao;
@@ -32,7 +33,7 @@ public class Fachada implements IFachada{
 
     @Override
     public void inserirGerente(Gerente gerente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controleGerente.inserirGerente(gerente);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class Fachada implements IFachada{
 
     @Override
     public void atualizarGerente(Gerente gerenteLogado, Gerente gerenteAtualizado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controleGerente.atualizarGerente(gerenteLogado, gerenteAtualizado);
     }
 
     @Override
@@ -57,12 +58,12 @@ public class Fachada implements IFachada{
 
     @Override
     public void removerFuncionario(int id) {
-       controleFuncionario.removerFuncionario(id);
+        controleFuncionario.removerFuncionario(id);
     }
 
     @Override
     public void removerGerente(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controleGerente.removerGerente(id);
     }
 
     @Override
@@ -84,5 +85,5 @@ public class Fachada implements IFachada{
     public List<Movimentacao> listarMovimentacao() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

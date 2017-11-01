@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
  * @author User
  */
 public class MovimentacaoDAOTest {
-    
+
     private MovimentacaoDAO factoryMovimentacao;
 
     public MovimentacaoDAOTest() {
@@ -49,25 +49,13 @@ public class MovimentacaoDAOTest {
     public void tearDown() {
     }
 
-    
-    
-    
-
-
-//------------------------TESTA Todo o CRUD do DAOGenerico para <Movimentacao>-------------------------------------
-    /**
-     * Test of insert method, of class DAOGenerico.
-     */
-
-    /* @Test
-     public void testInsert(){
-         Movimentacao funTest = new Movimentacao(true, Calendar.getInstance(), "descricao1", "categoria2", 20.0);
-         factoryMovimentacao.insert(funTest);
+    @Test
+    public void testInsert() {
+        Movimentacao funTest = new Movimentacao(true, Calendar.getInstance(), "descricao1", "categoria2", 20.0);
+        factoryMovimentacao.insert(funTest);
     }
-   /**
-     * Test of insertCollection method, of class DAOGenerico.
-     */
-   /* @Test
+
+    @Test
     public void testInsertCollection() {
         List<Movimentacao> listaMovimentacaos = new ArrayList<Movimentacao>();
 
@@ -82,34 +70,24 @@ public class MovimentacaoDAOTest {
         factoryMovimentacao.insertCollection(listaMovimentacaos);
     }
 
-    /**
-     * Test of getAll method, of class DAOGenerico.
-     */
-    /*@Test
+    @Test
     public void testGetAll() {
         List<Movimentacao> listaMovimentacao;
         listaMovimentacao = factoryMovimentacao.getAll();
 
     }
 
-    /**
-     * Test of remove method, of class DAOGenerico.
-     */
-    /*@Test
+    @Test
     public void testRemove() {
         Movimentacao movimentacao = factoryMovimentacao.searchByKey(1);
         factoryMovimentacao.remove(movimentacao);
     }
 
-    
-   /**
-     * Test of update method, of class DAOGenerico.
-     */
     @Test
     public void testUpdate() {
         Movimentacao movimentacao = factoryMovimentacao.searchByKey(2);
         movimentacao.setCategoria("categorp");
         factoryMovimentacao.update(movimentacao);
     }
-  
+
 }
