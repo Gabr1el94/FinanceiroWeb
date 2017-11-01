@@ -6,7 +6,7 @@
 package MVC.negocio;
 import MVC.classes.*;
 import MVC.dados.*;
-import MVC.negocio.exececao.ExececaoDeNegocio;
+import MVC.negocio.exececao.ExcecaoDeNegocio;
 import java.util.List;
 
 /**
@@ -47,36 +47,36 @@ public class MovimentacaoControle {
                         
             return "ok";
                 
-        } catch (ExececaoDeNegocio ex) {
+        } catch (ExcecaoDeNegocio ex) {
             return ex.toString();            
         }
     }
     
-    private void testaCategoria() throws ExececaoDeNegocio{
+    private void testaCategoria() throws ExcecaoDeNegocio{
         if (movimentacaoTeste.getCategoria().length() > 10 || movimentacaoTeste.getCategoria().length() <= 3) {
-        throw new ExececaoDeNegocio("Categoria não pode ter menos de 3 caracteres ou mais de 10", "mensagem_TamanhoInvalidoCategoria");
+        throw new ExcecaoDeNegocio("Categoria não pode ter menos de 3 caracteres ou mais de 10", "mensagem_TamanhoInvalidoCategoria");
     }
                
     }
     
-    private void testaDescricao() throws ExececaoDeNegocio{
+    private void testaDescricao() throws ExcecaoDeNegocio{
         if (movimentacaoTeste.getDescricao().length() > 40 || movimentacaoTeste.getDescricao().length() <= 3) {
-            throw new ExececaoDeNegocio("Descrição não pode ter mais de 40 caracteres ou menos de 3", "mensagem_TamanhoInvalidoCategoria");
+            throw new ExcecaoDeNegocio("Descrição não pode ter mais de 40 caracteres ou menos de 3", "mensagem_TamanhoInvalidoCategoria");
         }
     }
     
-    private void testaValor() throws ExececaoDeNegocio{
+    private void testaValor() throws ExcecaoDeNegocio{
         if (movimentacaoTeste.getValor() == 0.0) {
-            throw new ExececaoDeNegocio("Valor não pode ser 0", "mensagem_valorInvalido");
+            throw new ExcecaoDeNegocio("Valor não pode ser 0", "mensagem_valorInvalido");
         }
     }
     
-    private void testaGerente() throws ExececaoDeNegocio{
+    private void testaGerente() throws ExcecaoDeNegocio{
         if (movimentacaoTeste.getGerente().equals("")) {
-            throw new ExececaoDeNegocio("O nome do Gerente não pode estar vazio", "mensagem_GerenteInexistente");
+            throw new ExcecaoDeNegocio("O nome do Gerente não pode estar vazio", "mensagem_GerenteInexistente");
         }
         if (!movimentacaoTeste.getGerente().equals(movimentacaoTeste.getGerente())){
-            throw new ExececaoDeNegocio("Esse Gerente não existe", "mensagem_GerenteInválido");
+            throw new ExcecaoDeNegocio("Esse Gerente não existe", "mensagem_GerenteInválido");
         }
     }
     

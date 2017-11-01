@@ -12,7 +12,7 @@ import javax.persistence.EntityManagerFactory;
  *
  * @author Rodrigo
  */
-public class FuncionarioDAO extends DAOGenerico<Funcionario>{
+public class FuncionarioDAO extends DAOGenerico<Funcionario> {
     
     public FuncionarioDAO(EntityManagerFactory emf) {
 		super(emf);

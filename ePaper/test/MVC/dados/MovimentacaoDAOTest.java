@@ -112,6 +112,4 @@ public class MovimentacaoDAOTest {
         factoryMovimentacao.update(movimentacao);
     }
   
-    
-
 }
