@@ -18,7 +18,7 @@ public class MovimentacaoControle {
     private MovimentacaoDAO factoryMovimentacao;
     private Movimentacao movimentacaoTeste;
     public List <Movimentacao> listaMovimentações;
-    
+        
     public MovimentacaoControle(){
         
     }
@@ -42,7 +42,7 @@ public class MovimentacaoControle {
         try {
             testaCategoria();
             testaDescricao();
-            testaGerente();
+            
             testaValor();
                         
             return "ok";
@@ -51,6 +51,32 @@ public class MovimentacaoControle {
             return ex.toString();            
         }
     }
+    
+     public void inserirMovimentacao(Movimentacao movimentacaoAdd){
+        setMovimentacaoTeste(movimentacaoAdd);
+        this.isOK();
+        factoryMovimentacao.insert(movimentacaoTeste);      
+    }
+     
+      public void removerMovimentacao(int id){
+        Movimentacao movimentacaoRemover = factoryMovimentacao.searchByKey(id);
+        factoryMovimentacao.remove(movimentacaoRemover);
+    }
+    
+    
+    public void atualiarMovimentacao(Movimentacao movimentacaoLogado, Movimentacao movimentacaoAtualizado){
+        Movimentacao movimentacaoModificado = factoryMovimentacao.searchByKey(movimentacaoLogado.getId());
+        
+        movimentacaoModificado.setDescricao(movimentacaoAtualizado.getDescricao());
+        movimentacaoModificado.setCategoria(movimentacaoAtualizado.getCategoria());
+        
+        factoryMovimentacao.update(movimentacaoModificado);
+    }
+    
+    public List<Movimentacao> listarMovimentacao() {
+        return factoryMovimentacao.getAll();
+    }
+    
     
     private void testaCategoria() throws ExcecaoDeNegocio{
         if (movimentacaoTeste.getCategoria().length() > 10 || movimentacaoTeste.getCategoria().length() <= 3) {
@@ -71,16 +97,8 @@ public class MovimentacaoControle {
         }
     }
     
-    private void testaGerente() throws ExcecaoDeNegocio{
-        if (movimentacaoTeste.getGerente().equals("")) {
-            throw new ExcecaoDeNegocio("O nome do Gerente não pode estar vazio", "mensagem_GerenteInexistente");
-        }
-        if (!movimentacaoTeste.getGerente().equals(movimentacaoTeste.getGerente())){
-            throw new ExcecaoDeNegocio("Esse Gerente não existe", "mensagem_GerenteInválido");
-        }
-    }
     
-    
+
     
     
     

@@ -51,14 +51,14 @@ public class FuncionarioControleTest {
     public void testIsOkNomeNulo() throws Exception {
         Funcionario funcionarioTestaNome = new Funcionario(1, "", "nulo@gmail.com", Calendar.getInstance(), "2323234564384", "123456");
         controle.setFuncionarioTeste(funcionarioTestaNome);
-        Assert.assertEquals("MVC.negocio.exececao.ExececaoDeNegocio: Nome não pode ter mais de 60 caracteres ou  menos de 3", controle.isOk());
+        Assert.assertEquals("MVC.negocio.exececao.ExcecaoDeNegocio: Nome não pode ter mais de 60 caracteres ou  menos de 3", controle.isOk());
     }
 
     @Test
     public void testIsOkNomeTamano() throws Exception {
         Funcionario funcionarioTestaNome2 = new Funcionario(1, "rrr", "nulo@gmail.com", Calendar.getInstance(), "2323234564384", "123456");
         controle.setFuncionarioTeste(funcionarioTestaNome2);
-        Assert.assertEquals("MVC.negocio.exececao.ExececaoDeNegocio: Nome não pode ter mais de 60 caracteres ou  menos de 3", controle.isOk());
+        Assert.assertEquals("MVC.negocio.exececao.ExcecaoDeNegocio: Nome não pode ter mais de 60 caracteres ou  menos de 3", controle.isOk());
 
     }
 
@@ -66,7 +66,7 @@ public class FuncionarioControleTest {
     public void testIsOkNomeTamanoMaior() throws Exception {
         Funcionario funcionarioTestaNome3 = new Funcionario(1, "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", "nulo@gmail.com", Calendar.getInstance(), "2323234564384", "123456");
         controle.setFuncionarioTeste(funcionarioTestaNome3);
-        Assert.assertEquals("MVC.negocio.exececao.ExececaoDeNegocio: Nome não pode ter mais de 60 caracteres ou  menos de 3", controle.isOk());
+        Assert.assertEquals("MVC.negocio.exececao.ExcecaoDeNegocio: Nome não pode ter mais de 60 caracteres ou  menos de 3", controle.isOk());
 
     }
 
@@ -74,7 +74,7 @@ public class FuncionarioControleTest {
     public void testIsOkEmailNulo() throws Exception {
         Funcionario funcionarioTestaNome4 = new Funcionario(1, "Rodrigo", "", Calendar.getInstance(), "2323234564384", "123456");
         controle.setFuncionarioTeste(funcionarioTestaNome4);
-        Assert.assertEquals("MVC.negocio.exececao.ExececaoDeNegocio: Email não pode ser nulo", controle.isOk());
+        Assert.assertEquals("MVC.negocio.exececao.ExcecaoDeNegocio: Email não pode ser nulo", controle.isOk());
 
     }
 
@@ -82,28 +82,28 @@ public class FuncionarioControleTest {
     public void testIsOkEmaiMaior() throws Exception {
         Funcionario funcionarioTestaNome5 = new Funcionario(1, "Rodrigo", "rodrigo@shsuauhsauhhusauhsahu.com", Calendar.getInstance(), "2323234564384", "123456");
         controle.setFuncionarioTeste(funcionarioTestaNome5);
-        Assert.assertEquals("MVC.negocio.exececao.ExececaoDeNegocio: Email não pode ter mais de 30 caracteres", controle.isOk());
+        Assert.assertEquals("MVC.negocio.exececao.ExcecaoDeNegocio: Email não pode ter mais de 30 caracteres", controle.isOk());
     }
 
     @Test
     public void testIsOkEmailInvalido() throws Exception {
         Funcionario funcionarioTestaNome5 = new Funcionario(1, "Rodrigo", "rodrigo.com", Calendar.getInstance(), "2323234564384", "123456");
         controle.setFuncionarioTeste(funcionarioTestaNome5);
-        Assert.assertEquals("MVC.negocio.exececao.ExececaoDeNegocio: Email inválido", controle.isOk());
+        Assert.assertEquals("MVC.negocio.exececao.ExcecaoDeNegocio: Email inválido", controle.isOk());
     }
 
     @Test
     public void testIsOkCpfNulo() throws Exception {
         Funcionario funcionarioTestaNome6 = new Funcionario(1, "Rodriooogo", "adr@gmail.com", Calendar.getInstance(), "", "123456");
         controle.setFuncionarioTeste(funcionarioTestaNome6);
-        Assert.assertEquals("MVC.negocio.exececao.ExececaoDeNegocio: Cpf não pode ser nulo", controle.isOk());
+        Assert.assertEquals("MVC.negocio.exececao.ExcecaoDeNegocio: Cpf não pode ser nulo", controle.isOk());
     }
 
     @Test
     public void testIsOkCpfMaior() throws Exception {
         Funcionario funcionarioTestaNome6 = new Funcionario(1, "Rodriooogo", "adr@gmail.com", Calendar.getInstance(), "4343434343434343434343", "123456");
         controle.setFuncionarioTeste(funcionarioTestaNome6);
-        Assert.assertEquals("MVC.negocio.exececao.ExececaoDeNegocio: Cpf não pode ter mais de 14 caracteres", controle.isOk());
+        Assert.assertEquals("MVC.negocio.exececao.ExcecaoDeNegocio: Cpf não pode ter mais de 14 caracteres", controle.isOk());
     }
 
 }
