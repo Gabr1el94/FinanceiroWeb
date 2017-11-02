@@ -5,6 +5,7 @@
  */
 package MVC.negocio;
 
+import MVC.classes.Conta;
 import MVC.classes.Funcionario;
 import MVC.classes.Gerente;
 import MVC.classes.Movimentacao;
@@ -19,12 +20,14 @@ public class Fachada implements IFachada {
     private FuncionarioControle controleFuncionario;
     private GerenteControle controleGerente;
     private MovimentacaoControle controleMovimentacao;
+     private ContaControle controleConta;
 
-    public Fachada(FuncionarioControle controleFuncionario, GerenteControle controleGerente, MovimentacaoControle controleMovimentacao) {
+    public Fachada(FuncionarioControle controleFuncionario, GerenteControle controleGerente, MovimentacaoControle controleMovimentacao,ContaControle controleConta) {
         this.controleFuncionario = controleFuncionario;
         this.controleGerente = controleGerente;
         this.controleMovimentacao = controleMovimentacao;
-    }
+        this.controleConta = controleConta;
+    }  
 
     @Override
     public void inserirFuncionario(Funcionario funcionario) {
@@ -42,6 +45,10 @@ public class Fachada implements IFachada {
     }
 
     @Override
+    public void inserirConta(Conta conta) {
+        controleConta.inserirConta(conta);
+    }
+    @Override
     public void atualizarFuncionario(Funcionario funcionarioLogado, Funcionario funcionarioAtualizado) {
         controleFuncionario.atualiarFuncionario(funcionarioLogado, funcionarioAtualizado);
     }
@@ -56,6 +63,10 @@ public class Fachada implements IFachada {
         controleMovimentacao.atualiarMovimentacao(movimentacao, movimentacao1Atualizada);
     }
 
+   @Override
+    public void atualizarConta(Conta contaLogada, Conta contaAtualizada) {
+        controleConta.atualizarConta(contaLogada, contaAtualizada);
+    }
     @Override
     public void removerFuncionario(int id) {
         controleFuncionario.removerFuncionario(id);
@@ -70,7 +81,11 @@ public class Fachada implements IFachada {
     public void removerMovimentacao(int id) {
         controleMovimentacao.removerMovimentacao(id);
     }
-
+    
+    @Override
+    public void removerConta(int id) {
+        controleConta.removerConta(id);
+    }
     @Override
     public List<Funcionario> listarFuncionarios() {
         return controleFuncionario.listarFuncionario();
@@ -85,5 +100,9 @@ public class Fachada implements IFachada {
     public List<Movimentacao> listarMovimentacao() {
         return controleMovimentacao.listarMovimentacao();
     }
-
+  @Override
+    public List<Conta> listarContas() {
+        return controleConta.listarConta();
+       
+    }
 }

@@ -58,22 +58,25 @@ public class ContaDAOTest {
        
 
         factoryConta.insertCollection(listaConta);
+         
+       
     }    
  @Test
     public void testGetAll() {
-        List<Conta> listaContas;
-        listaContas = factoryConta.getAll();
+        List<Conta> listaConta;
+        listaConta = factoryConta.getAll();
 
     }
     @Test
     public void testRemove() {
-        Conta conta = factoryConta.searchByKey(1);
+        Conta conta = factoryConta.searchByKey(2);
         factoryConta.remove(conta);
     }
     @Test
     public void testUpdate() {
-        Conta conta = factoryConta.searchByKey(2);
+        Conta conta = factoryConta.searchByKey(3);
         conta.setSaldo(100);
         factoryConta.update(conta);
     }
+
 }

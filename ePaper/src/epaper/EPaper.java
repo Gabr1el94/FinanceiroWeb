@@ -5,6 +5,9 @@
  */
 package epaper;
 
+import MVC.classes.Conta;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,6 +24,9 @@ public class EPaper {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatetest");
         EntityManager em = emf.createEntityManager();
+         List<Conta> listaConta = new ArrayList<Conta>();
+       
+        System.out.println(listaConta);
     }
 
 }
