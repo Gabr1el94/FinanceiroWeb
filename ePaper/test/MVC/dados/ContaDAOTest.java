@@ -61,8 +61,8 @@ public class ContaDAOTest {
     }    
  @Test
     public void testGetAll() {
-        List<Conta> listaConta;
-        listaConta = factoryConta.getAll();
+        List<Conta> listaContas;
+        listaContas = factoryConta.getAll();
 
     }
     @Test
