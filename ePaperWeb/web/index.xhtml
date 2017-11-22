@@ -1,34 +1,40 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Formulário Cadastro - Gerente</title>
-       
-    </h:head>
-    <h:body >
-        
-        <h:form>
-          <h:outputLabel value="Nome:"/>
-          <h:inputText id="nome" value="#{GerenteMB.gerente.nome}" size="20" />
-           <h:outputLabel value="Email:"/>
-              <h:inputText id="email" value="#{GerenteMB.gerente.email}" size="20" />
-           <h:outputLabel value="Data Nascimento:"/>
-            <h:inputText id="nascimento"  value="#{calendarView.date3}">
-                  <f:convertDateTime pattern="MM/dd/yyyy" />
-            </h:inputText>
 
-             <h:outputLabel value="Cpf:"/>
-               <h:inputText id="cpf" value="#{GerenteMB.gerente.cpf}" size="20" />
-             <h:outputLabel value="Senha:"/>
-           
-              <h:outputLabel value="Repetir a Senha:"/>
-          <h:commandButton id="btnE" value="Enviar" type="submit" />
-          <h:commandButton id="btnL" value="Limpar" type="reset"/>
-        </h:form>
+        <script type="text/javascript" language="JavaScript">
+            var $ = jQuery;
+            $(document).ready(function() {
+                $("input[id*='dataNascimento']").mask('99/99/9999');
+            });
+        </script>
+
+    </h:head>
+    <h:body>
+
+        <f:view>
+            <h:form>
+                <h:outputLabel value="Nome: "/>
+                <p:inputText id="nome" value="#{geBean.gerente.nome}" size="20" required="true" /><br/> <br/>
+                <h:outputLabel value="Email: "/>
+                <p:inputText id="email" value="#{geBean.gerente.email}" size="20" required="true" /><br/> <br/>
+                <h:outputLabel value="Data Nascimento: "/>
+                <p:calendar id="dataNascimento" value="#{geBean.gerente.dataNascimento.time}" pattern="dd/MM/yyyy" />
+                <br/> <br/>
+                <h:outputLabel value="Cpf: "/>
+                <p:inputMask id="cpf" value="#{geBean.gerente.cpf}" required="true" mask="999.999.999-99"/>
+                <br/> <br/>
+                <h:outputLabel value="Senha:" />
+                <p:password id="senha" value="#{geBean.gerente.senha}"  required="true" />
+                <br/> <br/>
+                <h:commandButton id="salvar" action="#{geBean.salvar()}"  value="Salvar" type="submit" />
+                <input type="reset" value="Limpar"/>
+            </h:form>
+        </f:view>
     </h:body>
 </html>
 
