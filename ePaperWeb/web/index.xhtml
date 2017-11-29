@@ -2,27 +2,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>ePaper - Login</title>
           <link rel="StyleSheet" type="text/css" href="resources/css/style.css" media="screen" />
     </h:head>
     <h:body> 
+        <h:panelGrid id="pgHeader" columns="2" cellpadding="4">
+         <f:facet name="header">
+             
+         </f:facet>
+        </h:panelGrid>
         <p:separator />
-        <center><h1>Sistema de Login</h1></center>
-         <h:form id="formUsuario">        
-             <h:panelGrid id="pgNovo" columns="2" cellpadding="4" style="margin:0 auto;">  
-                    <p:outputLabel value="Email: ">
-                        <p:inputText  id="email"/></p:outputLabel>
-                   <br style="clear: left;" />
+        <h:form>
+             <h:panelGrid styleClass="formUser"  columns="2" cellpadding="4">
+              <h1 id="tLogin">Sistema de Login</h1>
+             </h:panelGrid>
+             <h:panelGrid styleClass="formUser"  columns="2" cellpadding="4">                     
+                 <p:outputLabel value="Email: ">
+                        <p:inputText value="#{f}" id="email"/></p:outputLabel>
+                        <br class="cle"/>
                         <p:outputLabel value="Senha:">     
-                            <p:inputText id="senha"/></p:outputLabel>
-                            <br style="clear: left;" />
-                            <p:commandButton value="&nbsp;Logar" styleClass="btnLogar" />
+                            <p:inputText value="#{f}" id="senha"/></p:outputLabel>
+                            <br class="cle"/>
+                            <p:commandButton value="Entrar" styleClass="btnLogar" />
                 </h:panelGrid>
                 <p:separator />       
         </h:form>
         
+         <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
+         <f:facet name="footer">
+             <strong>ePaper 2018  - Todos os direitos reservados</strong>
+         </f:facet>
+        </h:panelGrid>
+       
     </h:body>
 </html>
 

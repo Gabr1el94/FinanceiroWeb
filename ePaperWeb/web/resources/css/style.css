@@ -1,5 +1,25 @@
 .btnLogar{
-    left:110px;  
     horizontal-align:center;
 }
+.cle{
+    clear:left;
+}
 
+.formUser{
+    text-align: center;
+    margin:0 auto;
+    background-color: #f5f5f5;
+   width:50%;
+}
+
+#tLogin{
+    text-align: center;
+}
+
+#pgHeader{
+    margin:0 auto;
+}
+
+#pgFooter{
+    margin:0 auto;
+}
