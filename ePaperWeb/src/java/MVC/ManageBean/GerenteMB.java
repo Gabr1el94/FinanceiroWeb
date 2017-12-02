@@ -5,7 +5,6 @@
  */
 package MVC.ManageBean;
 
-import MVC.classes.Conta;
 import MVC.classes.Gerente;
 import MVC.classes.Pessoa;
 import MVC.dados.DAOFactory;
@@ -13,12 +12,15 @@ import MVC.dados.GerenteDAO;
 import MVC.negocio.Fachada;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.DataModel;
 
 /**
  *
@@ -30,7 +32,7 @@ public class GerenteMB implements Serializable {
     // String nome, email, cpf, senha;
     // Calendar dataNascimento = Calendar.getInstance();
     private Gerente gerente = new Gerente();
-
+  
     public GerenteMB() {
         this.gerente = new Gerente();
     }
@@ -51,14 +53,24 @@ public class GerenteMB implements Serializable {
 
     public void salvar() {
         try {
-            GerenteDAO factoryge = DAOFactory.getGerenteDAO();
-            factoryge.insert(gerente);
+            Fachada f = new Fachada();
+            f.inserirGerente(gerente);
+            limpar();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+    
+    public void update() {
+        try {
+            Fachada f = new Fachada();
+            f.atualizarGerente(gerente, gerente);
             gerente = new Gerente();
         } catch (Exception e) {
             e.getMessage();
         }
     }
-
+    
     public void limpar() {
         gerente = new Gerente();
     }

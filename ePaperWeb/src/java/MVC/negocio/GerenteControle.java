@@ -27,14 +27,21 @@ public class GerenteControle {
     private GerenteDAO factoryGerente;
     private Gerente gerenteTeste;
     public List<Gerente> listaGerente;
+    
 
     public GerenteControle() {
+         factoryGerente = DAOFactory.getGerenteDAO();
     }
 
+    /*
     public GerenteControle(GerenteDAO factoryGerente, Gerente gerenteTeste, List<Gerente> listaGerente) {
         factoryGerente = DAOFactory.getGerenteDAO();
         this.gerenteTeste = gerenteTeste;
         this.listaGerente = factoryGerente.getAll();
+    }
+    */
+    public void inserirGerente(Gerente gerenteAdd) {
+        factoryGerente.insert(gerenteAdd);
     }
 
     public void setGerenteTeste(Gerente gerenteTeste) {
@@ -56,13 +63,7 @@ public class GerenteControle {
 
     }
 
-    public void inserirGerente(Gerente gerenteAdd) {
-
-        setGerenteTeste(gerenteAdd);
-        this.isok();
-        factoryGerente.insert(gerenteTeste);
-
-    }
+    
 
     public void removerGerente(int id) {
         Gerente gerenteRemover = factoryGerente.searchByKey(id);

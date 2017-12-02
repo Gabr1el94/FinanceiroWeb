@@ -9,6 +9,7 @@ import MVC.classes.Conta;
 import MVC.classes.Funcionario;
 import MVC.classes.Gerente;
 import MVC.classes.Movimentacao;
+import MVC.classes.Pessoa;
 import java.util.List;
 
 /**
@@ -22,15 +23,14 @@ public class Fachada implements IFachada {
     private MovimentacaoControle controleMovimentacao;
     private ContaControle controleConta;
 
-    public Fachada(FuncionarioControle controleFuncionario, GerenteControle controleGerente, MovimentacaoControle controleMovimentacao, ContaControle controleConta) {
-        this.controleFuncionario = controleFuncionario;
-        this.controleGerente = controleGerente;
-        this.controleMovimentacao = controleMovimentacao;
-        this.controleConta = controleConta;
+    public Fachada() {
+        this.controleFuncionario = new FuncionarioControle() ;
+        this.controleGerente = new GerenteControle();
+        this.controleMovimentacao = new MovimentacaoControle();
+        this.controleConta = new ContaControle();
     }
 
-    public Fachada() {
-    }
+   
 
     @Override
     public void inserirFuncionario(Funcionario funcionario) {
