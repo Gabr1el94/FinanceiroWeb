@@ -22,13 +22,13 @@
             </h:panelGrid>
             <h:panelGrid styleClass="formUser"  columns="2" cellpadding="4">
                 <p:outputLabel value="Email: ">
-                    <p:inputText required="true" value="#{f}" id="email"/></p:outputLabel>
+                    <p:inputText required="true" value="#{loginMB.email}" id="email"/></p:outputLabel>
                 <br class="cle"/>
                 <p:outputLabel value="Senha:">
-                    <p:password required="true" value="#{f}" id="senha"/> </p:outputLabel>
+                    <p:password required="true" value="#{loginMB.senha}" id="senha"/> </p:outputLabel>
                 
                  <br class="cle"/>
-                <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu required="true" id="tipo" value = "#{f}">
+                <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu required="true" id="tipo" value = "#{loginMB.tipo}">
                  
                     <f:selectItem itemValue = "" itemLabel = "Selecione" /> 
                     <f:selectItem itemValue = "F" itemLabel = "Funcionário" /> 
@@ -36,7 +36,8 @@
                  
                 </p:selectOneMenu></p:outputLabel> <br class="cle"/>
                 
-                <p:commandButton value="Entrar" type="entrar" action="#{f}" styleClass="btnLogar" />
+                <p:commandButton value="Entrar" type="entrar" action="#{loginMB.efetuarLogin()}" styleClass="btnLogar" />
+                <b><i>#{loginBean.mensagem}</i></b>
             </h:panelGrid>
             <p:separator />
         </h:form>
