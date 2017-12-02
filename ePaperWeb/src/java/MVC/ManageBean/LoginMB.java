@@ -27,7 +27,7 @@ public class LoginMB implements Serializable {
     public String efetuarLogin() {
         if(tipo.equals("F")){
             checarFuncionario();
-        }else{
+        }else if(tipo.equals("G")){
             checarGerente();
         }
         return mensagem;
