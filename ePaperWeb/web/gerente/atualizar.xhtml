@@ -9,12 +9,17 @@
     </h:head>
     <h:body>
         <f:view>
-            <h:form>.
+            <h:form>
+                
+            </h:form>
+        </f:view>
+        <f:view>
+            <h:form>
                     <p:outputLabel for="nome" value="Nome Completo:"><br class="cle"/>
                             <p:inputText value="#{geBean.gerente.nome}" id="nome"/><br class="cle"/>
                     </p:outputLabel>
                      <p:outputLabel for="dataNascimento" value="Data Nascimento:" ><br class="cle"/>
-                        <p:calendar id="dataNascimento" pattern="dd/MM/yyyy" mode="popup" value="#{geBean.gerente.dataNascimento.time}" showOn="button">
+                         <p:calendar  id="dataNascimento" pattern="dd/MM/yyyy" mode="popup" value="#{geBean.gerente.dataNascimento.time}" showOn="button">
                      </p:calendar>
                     </p:outputLabel><br class="cle"/>
                     <p:outputLabel for="cpf" value="Cpf:"><br class="cle"/>
@@ -30,8 +35,9 @@
                         <p:password value="#{f}" id="reSenha"/><br class="cle"/>
                     </p:outputLabel>
                         <br class="cle"/>
-                        <p:commandButton id="cadastrar" value="Cadastrar" action="#{geBean.update()}" />
-                 </h:form>
+                        <p:commandButton id="atualizar" value="Atualizar" action="#{geBean.update()}" />
+                        <p:button value="Limpar" id="limpar" onclick="#{geBean.limpar()}"/>
+            </h:form>
         </f:view>
 
     </h:body>

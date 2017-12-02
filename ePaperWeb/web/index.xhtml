@@ -17,16 +17,25 @@
         </h:panelGrid>
         <p:separator />
         <h:form>
-            <h:panelGrid styleClass="formUser"  columns="2" cellpadding="4">
+            <h:panelGrid styleClass="formUser"  columns="3" cellpadding="5">
                 <h1 id="tLogin">Sistema de Login</h1>
             </h:panelGrid>
             <h:panelGrid styleClass="formUser"  columns="2" cellpadding="4">
                 <p:outputLabel value="Email: ">
-                    <p:inputText value="#{f}" id="email"/></p:outputLabel>
+                    <p:inputText required="true" value="#{f}" id="email"/></p:outputLabel>
                 <br class="cle"/>
                 <p:outputLabel value="Senha:">
-                    <p:password value="#{f}" id="senha"/> </p:outputLabel>
-                <br class="cle"/>
+                    <p:password required="true" value="#{f}" id="senha"/> </p:outputLabel>
+                
+                 <br class="cle"/>
+                <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu required="true" id="tipo" value = "#{f}">
+                 
+                    <f:selectItem itemValue = "" itemLabel = "Selecione" /> 
+                    <f:selectItem itemValue = "F" itemLabel = "Funcionário" /> 
+                    <f:selectItem itemValue = "G" itemLabel = "Gerente" /> 
+                 
+                </p:selectOneMenu></p:outputLabel> <br class="cle"/>
+                
                 <p:commandButton value="Entrar" type="entrar" action="#{f}" styleClass="btnLogar" />
             </h:panelGrid>
             <p:separator />
