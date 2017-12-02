@@ -57,6 +57,9 @@ public class GerenteMB implements Serializable {
         } catch (Exception e) {
             e.getMessage();
         }
+    }
 
+    public void limpar() {
+        gerente = new Gerente();
     }
 }
