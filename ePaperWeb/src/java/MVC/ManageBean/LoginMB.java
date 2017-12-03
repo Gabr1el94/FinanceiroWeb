@@ -41,10 +41,11 @@ public class LoginMB implements Serializable {
               for(Funcionario funcionario1 : f.listarFuncionarios()){
                 if(funcionario1.getEmail().equals(getEmail()) && funcionario1.getSenha().equals(getSenha())){
                      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
-                     break;
+                     FacesContext.getCurrentInstance().getExternalContext().redirect("faces/funcionario/index.xhtml");
+                    
                 }else{
                      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
-                     break;
+                    
                 }
             }
         } catch (Exception e) {
@@ -60,7 +61,7 @@ public class LoginMB implements Serializable {
                 for (Gerente gerente1 : f.listarGerentes()) {
                     if (gerente1.getEmail().equals(getEmail())&&gerente1.getSenha().equals(getSenha())) {
                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
-                       break;
+                      FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/index.xhtml");
                     }else{
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
                         break;
