@@ -26,7 +26,6 @@ public class GerenteControle {
 
     private GerenteDAO factoryGerente;
     private Gerente gerenteTeste;
-    public List<Gerente> listaGerente;
     
 
     public GerenteControle() {

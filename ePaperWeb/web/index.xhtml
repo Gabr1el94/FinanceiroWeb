@@ -17,6 +17,7 @@
         </h:panelGrid>
         <p:separator />
         <h:form>
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
             <h:panelGrid styleClass="formUser"  columns="3" cellpadding="5">
                 <h1 id="tLogin">Sistema de Login</h1>
             </h:panelGrid>
@@ -37,7 +38,7 @@
                 </p:selectOneMenu></p:outputLabel> <br class="cle"/>
                 
                 <p:commandButton value="Entrar" type="entrar" action="#{loginMB.efetuarLogin()}" styleClass="btnLogar" />
-                <b><i>#{loginBean.mensagem}</i></b>
+                
             </h:panelGrid>
             <p:separator />
         </h:form>

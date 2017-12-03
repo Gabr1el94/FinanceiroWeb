@@ -5,34 +5,31 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>ePaper - Atualização Gerente</title>
+         <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
+         <script type="text/javascript" src="../resources/js/script.js"></script>
     </h:head>
     <h:body>
         <f:view>
             <h:form>
-                
-            </h:form>
-        </f:view>
-        <f:view>
-            <h:form>
                     <p:outputLabel for="nome" value="Nome Completo:"><br class="cle"/>
-                            <p:inputText value="#{geBean.gerente.nome}" id="nome"/><br class="cle"/>
+                        <p:inputText value="#{geBean.gerente.nome}"  id="nome"/><br class="cle"/>
                     </p:outputLabel>
                      <p:outputLabel for="dataNascimento" value="Data Nascimento:" ><br class="cle"/>
-                         <p:calendar  id="dataNascimento" pattern="dd/MM/yyyy" mode="popup" value="#{geBean.gerente.dataNascimento.time}" showOn="button">
+                         <p:calendar  id="dataNascimento"  pattern="dd/MM/yyyy" mode="popup"  showOn="button">
                      </p:calendar>
                     </p:outputLabel><br class="cle"/>
                     <p:outputLabel for="cpf" value="Cpf:"><br class="cle"/>
-                        <p:inputMask mask="999.999.999-99" value="#{geBean.gerente.cpf}" id="cpf" /><br class="cle"/>
+                        <p:inputMask  mask="999.999.999-99" value="#{geBean.gerente.cpf}" id="cpf" /><br class="cle"/>
                     </p:outputLabel>
                     <p:outputLabel for="email" value="Email:"><br class="cle"/>
-                        <p:inputText value="#{geBean.gerente.email}" id="email"/><br class="cle"/>
+                        <p:inputText  value="#{geBean.gerente.email}" id="email"/><br class="cle"/>
                     </p:outputLabel>
                     <p:outputLabel for="senha" value="Senha:"><br class="cle"/>
-                        <p:password value="#{geBean.gerente.senha}" id="senha"/><br class="cle"/>
+                        <p:password  value="#{geBean.gerente.senha}" id="senha"/><br class="cle"/>
                     </p:outputLabel>
                     <p:outputLabel for="reSenha" value="Repetir Senha:"><br class="cle"/>
-                        <p:password value="#{f}" id="reSenha"/><br class="cle"/>
+                        <p:password value="#{f}"  id="reSenha"/><br class="cle"/>
                     </p:outputLabel>
                         <br class="cle"/>
                         <p:commandButton id="atualizar" value="Atualizar" action="#{geBean.update()}" />
