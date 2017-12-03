@@ -20,7 +20,7 @@ public class MovimentacaoControle {
     public List <Movimentacao> listaMovimentações;
         
     public MovimentacaoControle(){
-        
+        factoryMovimentacao = DAOFactory.getMovimentacaoDAO();
     }
     
     public MovimentacaoControle(Movimentacao movimentacao){

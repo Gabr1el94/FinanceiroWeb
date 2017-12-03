@@ -22,6 +22,7 @@ public class ContaControle {
     private Conta contaTeste;
 
     public ContaControle() {
+        factoryConta = DAOFactory.getContaDAO();
     }
   public ContaControle(Conta conta) {
         factoryConta = DAOFactory.getContaDAO();

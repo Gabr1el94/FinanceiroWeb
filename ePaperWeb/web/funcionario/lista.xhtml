@@ -3,42 +3,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-          
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>ePaper - Lista</title>
-         <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
-         <script type="text/javascript" src="../resources/js/script.js"></script>
+        <title>Facelet Title</title>
     </h:head>
     <h:body>
         
-        <h:form id="cadastroGerente">
-            <p:inputText required="true" value="#{geBean.gerente.nome}" id="nome"/>
+        <h:form id="cadastroFuncionario">
+            <p:inputText required="true" value="#{geBean}" id="nome"/>
             <p:commandButton value="#{txt.botaoPesquisar}" icon="ui-icon-search" onclick="#{f}" />
         </h:form>
         <br class="cle"/>
         
         <f:view>
             <h:form>
-                <p:dataTable var="ger" value="#{geBean.gerente}">
+                <p:dataTable var="ger" value="#{geBean}">
                         <f:facet name="header">
-                            Lista de Gerentes
+                            Lista de Funcionários
                         </f:facet>
 
                         <p:column headerText="Nome">
-                            <h:outputText value="#{car.id}" />
+                            <h:outputText value="#{car}" />
                         </p:column>
                     
                         <p:column headerText="Cpf">
-                            <h:outputText value="#{car.year}" />
+                            <h:outputText value="#{car}" />
                         </p:column>
                     
                          <p:column headerText="Data Nascimento">
-                            <h:outputText value="#{car.year}" />
+                            <h:outputText value="#{car}" />
                         </p:column>
                     
                         <p:column headerText="Email">
-                            <h:outputText value="#{car.year}" />
+                            <h:outputText value="#{car}" />
                         </p:column>
                 </p:dataTable>
             </h:form>
