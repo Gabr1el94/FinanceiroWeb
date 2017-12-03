@@ -7,12 +7,12 @@ package MVC.ManageBean;
 
 import MVC.classes.Funcionario;
 import MVC.classes.Gerente;
+
 import MVC.negocio.Fachada;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -23,9 +23,10 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class LoginMB implements Serializable {
     
-    private String email,senha, mensagem, tipo;
-    Fachada f = new Fachada();
+    private String email,senha, mensagem;
+    String tipo;
     
+    Gerente gerente = new Gerente();
     public void efetuarLogin() {
         if(tipo.equals("F")){
             checarFuncionario();
@@ -35,6 +36,7 @@ public class LoginMB implements Serializable {
     }
     
     public void checarFuncionario(){
+        Fachada f = new Fachada();
         for(Funcionario funcionario : f.listarFuncionarios()){
                 if(funcionario.getEmail().equals(email) && funcionario.getSenha().equals(senha)){
                      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
@@ -42,16 +44,23 @@ public class LoginMB implements Serializable {
             }
     }
     
-    public void checarGerente(){
-        
-            for(Gerente gerente : f.listarGerentes()){
-                if(gerente.getEmail().equals(email) && gerente.getSenha().equals(senha)){
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
-                } 
+    public void checarGerente(){ 
+            
+            try {
+               Fachada f = new Fachada();
+                for (Gerente gerente1 : f.listarGerentes()) {
+                    if (gerente1.getEmail().equals(getEmail())&&gerente1.getSenha().equals(getSenha())) {
+                       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
+                       break;
+                    }
+                }
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
+            
+            } catch (Exception e) {
+               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", e.getMessage()));
             }
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
-        
-    }
+
+   }
 
     public String getEmail() {
         return email;
@@ -69,14 +78,6 @@ public class LoginMB implements Serializable {
         this.senha = senha;
     }
 
-    public String getMensagem() {
-        return mensagem;
-    }
-
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
-
     public String getTipo() {
         return tipo;
     }
@@ -84,6 +85,8 @@ public class LoginMB implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    
     
     
 }

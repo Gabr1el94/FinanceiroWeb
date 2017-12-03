@@ -2,30 +2,50 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>ePaper - Login</title>
+        <title>Facelet Title</title>
     </h:head>
     <h:body>
+         <h:panelGrid id="pgHeader" columns="2" cellpadding="4">
+            <f:facet name="header">
 
-        <f:view>
-            <h:form>
-               
-                <h:outputText value="Email:"/>
-                    <h:inputText value="#{loginMB.email}" size="20" id="email"/>
-               <br/><br/>
-                <h:outputText value="Senha:"/>
-                    <h:inputText value="#{loginMB.senha}" size="20" id="senha"/>
-               <br/><br/>
-                <h:selectOneMenu id="tipo" value = "#{loginMB.tipo}">
-                     <f:selectItem itemValue = "" itemLabel = "Selecione" /> 
+            </f:facet>
+        </h:panelGrid>
+        <p:separator />
+        <h:form>
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+            <h:panelGrid styleClass="formUser"  columns="3" cellpadding="5">
+                <h1 id="tLogin">Sistema de Login</h1>
+            </h:panelGrid>
+            <h:panelGrid styleClass="formUser"  columns="2" cellpadding="4">
+                <p:outputLabel value="Email: ">
+                    <p:inputText required="true" value="#{loginMB.email}" id="email"/></p:outputLabel>
+                <br class="cle"/>
+                <p:outputLabel value="Senha:">
+                    <p:password required="true" value="#{loginMB.senha}" id="senha"/> </p:outputLabel>
+                
+                 <br class="cle"/>
+                <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu required="true" id="tipo" value = "#{loginMB.tipo}">
+                 
+                    <f:selectItem itemValue = "" itemLabel = "Selecione" /> 
                     <f:selectItem itemValue = "F" itemLabel = "Funcionário" /> 
                     <f:selectItem itemValue = "G" itemLabel = "Gerente" /> 
-                </h:selectOneMenu><br/><br/>
-                <h:commandButton action="#{f}" value="Entrar" />
-            </h:form>
-        </f:view>
+                 
+                </p:selectOneMenu></p:outputLabel> <br class="cle"/>
+                
+                <p:commandButton value="Entrar" type="entrar" action="#{loginMB.efetuarLogin()}" styleClass="btnLogar" />
+                
+            </h:panelGrid>
+            <p:separator />
+        </h:form>
 
+        <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
+            <f:facet name="footer">
+                <strong>ePaper 2018  - Todos os direitos reservados</strong>
+            </f:facet>
+        </h:panelGrid>
     </h:body>
 </html>
 
