@@ -35,4 +35,5 @@ public class Funcionario extends Pessoa {
     public void setIdGerenteResponsavel(int idGerenteResponsavel) {
         this.idGerenteResponsavel = idGerenteResponsavel;
     }
+    
 }

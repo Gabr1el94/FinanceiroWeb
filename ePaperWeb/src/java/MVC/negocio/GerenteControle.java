@@ -32,13 +32,13 @@ public class GerenteControle {
          factoryGerente = DAOFactory.getGerenteDAO();
     }
 
-    /*
+    
     public GerenteControle(GerenteDAO factoryGerente, Gerente gerenteTeste, List<Gerente> listaGerente) {
         factoryGerente = DAOFactory.getGerenteDAO();
         this.gerenteTeste = gerenteTeste;
-        this.listaGerente = factoryGerente.getAll();
+        
     }
-    */
+    
     public void inserirGerente(Gerente gerenteAdd) {
         factoryGerente.insert(gerenteAdd);
     }

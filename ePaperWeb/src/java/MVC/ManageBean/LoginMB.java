@@ -23,10 +23,9 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class LoginMB implements Serializable {
     
-    private String email,senha, mensagem;
+    private String email,senha;
     String tipo;
     
-    Gerente gerente = new Gerente();
     public void efetuarLogin() {
         if(tipo.equals("F")){
             checarFuncionario();
@@ -36,16 +35,26 @@ public class LoginMB implements Serializable {
     }
     
     public void checarFuncionario(){
-        Fachada f = new Fachada();
-        for(Funcionario funcionario : f.listarFuncionarios()){
-                if(funcionario.getEmail().equals(email) && funcionario.getSenha().equals(senha)){
+        
+        try {
+            Fachada f = new Fachada();
+              for(Funcionario funcionario1 : f.listarFuncionarios()){
+                if(funcionario1.getEmail().equals(getEmail()) && funcionario1.getSenha().equals(getSenha())){
                      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
+                     break;
+                }else{
+                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
+                     break;
                 }
             }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error! ftfuyghguhjop", e.getMessage()));
+
+        }
+      
     }
     
     public void checarGerente(){ 
-            
             try {
                Fachada f = new Fachada();
                 for (Gerente gerente1 : f.listarGerentes()) {

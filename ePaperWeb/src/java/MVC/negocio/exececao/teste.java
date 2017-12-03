@@ -5,6 +5,7 @@
  */
 package MVC.negocio.exececao;
 
+import MVC.classes.Funcionario;
 import MVC.classes.Gerente;
 import MVC.dados.DAOFactory;
 import MVC.dados.GerenteDAO;
@@ -19,8 +20,9 @@ import javax.jms.Session;
 public class teste {
     
     public static void main(String[] args) {
-        Gerente gerente = new Gerente();
+        
         /*
+        Gerente gerente = new Gerente();
         gerente.setId(1);
         gerente.setNome("Karlos Nascimento");
         gerente.setCpf("177.254.333-44");
@@ -51,6 +53,7 @@ public class teste {
         }
         */
         
+        
         /*
         try {
             Fachada f= new Fachada();
@@ -59,8 +62,20 @@ public class teste {
         } catch (Exception e) {
         }
         */
-        
-        
+        Funcionario f1 = new Funcionario();
+        try {
+            Calendar dataNascimento=Calendar.getInstance();
+            
+            f1.setNome("Gabriel");
+            f1.setEmail("gab@gab.com");
+            f1.setSenha("123");
+            f1.setCpf("5656951512");
+            f1.setDataNascimento(dataNascimento);
+            Fachada f = new Fachada();
+            f.inserirFuncionario(f1);
+        } catch (Exception e) {
+            
+        }
    
     }
     

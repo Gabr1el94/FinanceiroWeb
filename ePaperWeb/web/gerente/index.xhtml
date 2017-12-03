@@ -10,21 +10,19 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:megaMenu style="margin-top:20px">
-            <p:menuitem value="Home" url="#" icon="ui-icon-home"/>
-     
- 
-            <p:menuitem value="Movimentação" url="#" icon="ui-icon-refresh" />
-
-            <p:submenu label="Funcionário" icon="ui-icon-pencil">
-                        <p:menuitem value="Cadastrar" url="#" />
-                        <p:menuitem value="Alterar" url="#" />
-                        <p:menuitem value="Excluir" url="#" />
-            </p:submenu> 
-            
-            <p:menuitem value="Quit" url="#" icon="ui-icon-close" />
-        </p:megaMenu>
-</h:form>
+            <p:growl id="messages"/>
+            <p:menubar>
+                <p:menuitem value="Home" url="#" icon="ui-icon-home" />
+                <p:menuitem value="Movimentação" url="#" icon=" ui-icon-refresh" />
+                <p:submenu label="Funcionário" icon="ui-icon-person">
+                   <p:menuitem value="Cadastrar" url="#" icon="ui-icon-plusthick" />
+                   <p:menuitem value="Alterar" url="#" icon=" ui-icon-minusthick" />
+                   <p:menuitem value="Consulta" url="#" icon="ui-icon-search" />
+                </p:submenu>
+                <p:menuitem value="Relatório" url="#" icon="ui-icon-clipboard" />
+                <p:menuitem value="Conta" url="#" icon="ui-icon-clipboard" />
+            </p:menubar>
+        </h:form>
     </h:body>
 </html>
 

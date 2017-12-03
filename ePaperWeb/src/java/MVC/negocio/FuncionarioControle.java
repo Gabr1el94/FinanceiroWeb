@@ -24,7 +24,7 @@ public class FuncionarioControle {
    
 
     public FuncionarioControle() {
-
+        factoryFuncionario = DAOFactory.getFuncionarioDAO();
     }
 
     public FuncionarioControle(Funcionario funcionario) {
@@ -51,9 +51,7 @@ public class FuncionarioControle {
     }
     
     public void inserirFuncionario(Funcionario funcionarioAdd){
-        setFuncionarioTeste(funcionarioAdd);
-        this.isOk();
-        factoryFuncionario.insert(funcionarioTeste);      
+        factoryFuncionario.insert(funcionarioAdd);      
     }
     
     public void removerFuncionario(int id){
