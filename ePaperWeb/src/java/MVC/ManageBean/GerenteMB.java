@@ -23,7 +23,7 @@ public class GerenteMB implements Serializable {
 
     // String nome, email, cpf, senha;
     // Calendar dataNascimento = Calendar.getInstance();
-    Gerente gerente = new Gerente();
+    private Gerente gerente;
   
    
     public GerenteMB() {
