@@ -14,6 +14,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+import org.hibernate.Session;
 
 /**
  *
@@ -61,10 +63,9 @@ public class LoginMB implements Serializable {
             for (Gerente gerente1 : f.listarGerentes()) {
                 if (gerente1.getEmail().equals(getEmail()) && gerente1.getSenha().equals(getSenha())) {
 
-                    GerenteMB gerenteBean = new GerenteMB();
-                    gerenteBean.setGerenteLogado(gerente1);
-
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
+                    FacesContext facesContext = FacesContext.getCurrentInstance();
+                    HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+                    session.setAttribute("email", getEmail());
                     FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/atualizar.xhtml");
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
