@@ -7,37 +7,36 @@
     <h:head>
         <title>ePaper - Movimentação</title>
         <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
-         <script type="text/javascript" src="../resources/js/script.js"></script>
-       <script type="text/javascript">
-        function handleLoginRequest(xhr, status, args) {
-            if(args.validationFailed || !args.loggedIn) {
-                PF('dlg').jq.effect("shake", {times:5}, 100);
+        <script type="text/javascript" src="../resources/js/script.js"></script>
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args) {
+                if (args.validationFailed || !args.loggedIn) {
+                    PF('dlg').jq.effect("shake", {times: 5}, 100);
+                } else {
+                    PF('dlg').hide();
+                    $('#loginLink').fadeOut();
+                }
             }
-            else {
-                PF('dlg').hide();
-                $('#loginLink').fadeOut();
-            }
-        }
-    </script>        
+        </script>
     </h:head>
     <h:body>
-      <h:form>
-             <f:facet name="header">
-                        <p:growl id="messages"/>
-                  <p:menubar>
-                      <p:menuitem value="Home" url="#" icon="ui-icon-home" />
-                      <p:menuitem value="Movimentação" url="#" icon=" ui-icon-refresh" />
-                      <p:submenu label="Funcionário" icon="ui-icon-person">
-                         <p:menuitem value="Cadastrar" url="#" icon="ui-icon-plusthick" />
-                         <p:menuitem value="Alterar" url="#" icon=" ui-icon-minusthick" />
-                         <p:menuitem value="Consulta" url="#" icon="ui-icon-search" />
-                      </p:submenu>
-                      <p:menuitem value="Relatório" url="#" icon="ui-icon-clipboard" />
-                      <p:menuitem value="Conta" url="#" />
-                  </p:menubar>
-             </f:facet> 
-            
-            
+        <h:form>
+            <f:facet name="header">
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem value="Home" url="#" icon="ui-icon-home" />
+                    <p:menuitem value="Movimentação" url="#" icon=" ui-icon-refresh" />
+                    <p:submenu label="Funcionário" icon="ui-icon-person">
+                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-plusthick" />
+                        <p:menuitem value="Alterar" url="#" icon=" ui-icon-minusthick" />
+                        <p:menuitem value="Consulta" url="#" icon="ui-icon-search" />
+                    </p:submenu>
+                    <p:menuitem value="Relatório" url="#" icon="ui-icon-clipboard" />
+                    <p:menuitem value="Conta" url="#" />
+                </p:menubar>
+            </f:facet>
+
+
             <div class="tudo">
                 <div class="sAtual">
                     <h3>Recebimento Previsto</h3>
@@ -48,66 +47,77 @@
                     <p>R$<strong style="color: red">'Valor'</strong</p>
                 </div>
             </div>
-          
-          
-            
-          <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
-               <p:button outcome="productDetail" value="Adicionar" icon="ui-icon-plusthick">
-                <f:param name="productId" value="10" />
-                 </p:button>
-         </h:outputLink>
-          
-           <p:dialog header="Login" widgetVar="dlg" resizable="false">
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputLabel for="username" value="Username:" />
-                    <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
 
-                    <h:outputLabel for="password" value="Password:" />
-                    <p:password id="password" value="#{userLoginView.password}" required="true" label="password" />
+
+
+            <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="Movimentacao">
+                <p:button outcome="productDetail" value="Adicionar" icon="ui-icon-plusthick">
+                    <f:param name="productId" value="10" />
+                </p:button>
+            </h:outputLink>
+
+            <p:dialog header="Movimentação" widgetVar="dlg" resizable="false">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="descricao" value="Descrição:" />
+                    <p:inputText id="descricao" value="#{userLoginView.username}" required="true" label="username" />
+
+                    <p:outputLabel for="emissao" value="Data Emissão:" /><br class="cle"/>
+                    <p:calendar id="emissao" pattern="dd/MM/yyyy" mode="popup" value="#{f}" showOn="button">
+                    </p:calendar>
+
+                    <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu  id="tipo" value = "#{loginMB.tipo}">
+
+                            <f:selectItem  itemValue = "" itemLabel = "Selecione" />
+                            <f:selectItem  itemValue = "Despesa" itemLabel = "Despesa" />
+                            <f:selectItem itemValue = "Recebimento" itemLabel = "Recebimento" />
+
+                        </p:selectOneMenu></p:outputLabel> <br class="cle"/>
+
+
 
                     <f:facet name="footer">
                         <p:commandButton value="Login" update="growl" actionListener="#{userLoginView.login}"
                                          oncomplete="handleLoginRequest(xhr, status, args)" />
-                    </f:facet>  
+                    </f:facet>
                 </h:panelGrid>
-        </p:dialog>
-          
-                <p:dataTable var="ger" value="#{geBean.gerente}">
-                        <f:facet name="header">
-                            Lista Movimentação
-                        </f:facet>
-                        <p:column headerText="Pago">
-                            <h:outputText value="#{ger}" />
-                        </p:column>
-                    
-                        <p:column headerText="Valor">
-                            <h:outputText value="#{ger}" />
-                        </p:column>
-                    
-                        <p:column headerText="Descrição">
-                            <h:outputText value="#{ger}" />
-                        </p:column>
-                    
-                        <p:column headerText="Emissão">
-                            <h:outputText value="#{ger}" />
-                        </p:column>
-                    
-                        <p:column headerText="Tipo">
-                            <h:outputText value="#{ger}" />
-                        </p:column>
-                    
-                        <p:column headerText="Alterar">
-                            <h:outputText value="#{ger}" />
-                        </p:column>
-                </p:dataTable>
-            
+            </p:dialog>
+
+            <p:dataTable var="ger" value="#{geBean.gerente}">
+                <f:facet name="header">
+                    Lista Movimentação
+                </f:facet>
+                <p:column headerText="Pago">
+                    <h:outputText value="#{ger}" />
+                </p:column>
+
+                <p:column headerText="Valor">
+                    <h:outputText value="#{ger}" />
+                </p:column>
+
+                <p:column headerText="Descrição">
+                    <h:outputText value="#{ger}" />
+                </p:column>
+
+                <p:column headerText="Emissão">
+                    <h:outputText value="#{ger}" />
+                </p:column>
+
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{ger}" />
+                </p:column>
+
+                <p:column headerText="Alterar">
+                    <h:outputText value="#{ger}" />
+                </p:column>
+            </p:dataTable>
+
             <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
-              <f:facet name="footer">
-                  <strong>ePaper 2018  - Todos os direitos reservados</strong>
-              </f:facet>
-          </h:panelGrid> 
-            
-        </h:form>    
+                <f:facet name="footer">
+                    <strong>ePaper 2018  - Todos os direitos reservados</strong>
+                </f:facet>
+            </h:panelGrid>
+
+        </h:form>
     </h:body>
 </html>
 

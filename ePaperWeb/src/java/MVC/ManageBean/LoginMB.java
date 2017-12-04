@@ -22,61 +22,61 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "loginMB")
 @SessionScoped
 public class LoginMB implements Serializable {
-    
-    private String email,senha;
+
+    private String email, senha;
     String tipo;
-    
+
     public void efetuarLogin() {
-        if(tipo.equals("F")){
+        if (tipo.equals("F")) {
             checarFuncionario();
-        }else if(tipo.equals("G")){
+        } else if (tipo.equals("G")) {
             checarGerente();
         }
     }
-    
-    public void checarFuncionario(){
-        
+
+    public void checarFuncionario() {
+
         try {
             Fachada f = new Fachada();
-              for(Funcionario funcionario1 : f.listarFuncionarios()){
-                if(funcionario1.getEmail().equals(getEmail()) && funcionario1.getSenha().equals(getSenha())){
-                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
-                     FacesContext.getCurrentInstance().getExternalContext().redirect("faces/funcionario/index.xhtml");
-                    
-                }else{
-                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
-                    
+            for (Funcionario funcionario1 : f.listarFuncionarios()) {
+                if (funcionario1.getEmail().equals(getEmail()) && funcionario1.getSenha().equals(getSenha())) {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("faces/funcionario/index.xhtml");
+
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
+
                 }
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error! ftfuyghguhjop", e.getMessage()));
 
         }
-      
+
     }
-    
-    public void checarGerente(){ 
-            try {
-               Fachada f = new Fachada();
-                for (Gerente gerente1 : f.listarGerentes()) {
-                    if (gerente1.getEmail().equals(getEmail())&&gerente1.getSenha().equals(getSenha())) {
-                        
-                        GerenteMB gerenteBean = new GerenteMB();
-                        gerenteBean.setGerenteLogado(gerente1);
-                        
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/atualizar.xhtml");
-                    }else{
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
-                        
-                    }
+
+    public void checarGerente() {
+        try {
+            Fachada f = new Fachada();
+            for (Gerente gerente1 : f.listarGerentes()) {
+                if (gerente1.getEmail().equals(getEmail()) && gerente1.getSenha().equals(getSenha())) {
+
+                    GerenteMB gerenteBean = new GerenteMB();
+                    gerenteBean.setGerenteLogado(gerente1);
+
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/atualizar.xhtml");
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
+
                 }
-            
-            } catch (Exception e) {
-               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", e.getMessage()));
             }
 
-   }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", e.getMessage()));
+        }
+
+    }
 
     public String getEmail() {
         return email;
