@@ -64,7 +64,7 @@ public class LoginMB implements Serializable {
                         FacesContext.getCurrentInstance().getExternalContext().redirect("faces/funcionario/cadastro.xhtml");
                     }else{
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
-                        break;
+                        
                     }
                 }
             

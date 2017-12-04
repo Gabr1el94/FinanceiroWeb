@@ -31,7 +31,7 @@
                     <p:inputText value="#{fuBean.funcionario.nome}" id="nome"/><br class="cle"/>
                 </p:outputLabel> 
                 <p:outputLabel for="dataNascimento" value="Data Nascimento:" ><br class="cle"/>
-                    <p:calendar id="dataNascimento" pattern="dd/MM/yyyy" mode="popup" value="#{fuBean.funcionario.dataNascimento}" showOn="button">
+                    <p:calendar id="dataNascimento" pattern="dd/MM/yyyy" mode="popup" value="#{fuBean.funcionario.dataNascimento.time}" showOn="button">
                  </p:calendar>
                 </p:outputLabel><br class="cle"/>
                 <p:outputLabel for="cpf" value="Cpf:"><br class="cle"/>

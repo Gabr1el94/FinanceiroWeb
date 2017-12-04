@@ -38,8 +38,16 @@
                     <p>R$<strong style="color: red">'Valor'</strong</p>
                 </div>
             </div>
+          
+          
             
-          <p:button target="_blank" icon="ui-icon-plusthick" href="#" value="Adicionar"  />
+          <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
+               <p:button outcome="productDetail" value="Adicionar" icon="ui-icon-plusthick">
+                <f:param name="productId" value="10" />
+                 </p:button>
+         </h:outputLink>
+          
+          
                 <p:dataTable var="ger" value="#{geBean.gerente}">
                         <f:facet name="header">
                             Lista Movimentação
