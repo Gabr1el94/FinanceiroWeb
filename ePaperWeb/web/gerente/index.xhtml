@@ -8,6 +8,7 @@
         <title>ePaper - Home</title>
         <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
          <script type="text/javascript" src="../resources/js/script.js"></script>
+         
     </h:head>
     <h:body>
         <h:form>
@@ -25,22 +26,27 @@
                       <p:menuitem value="Conta" url="#" />
                   </p:menubar>
              </f:facet>  
-           
-            <div id="sAtual">
-                <h3>Saldo Atual</h3>
-                <p>R$<strong style="color: green">Valor</strong</p>
-            </div>
-            <div id="sDespesas">
-                <h3>Saldo Atual</h3>
-                <p>R$<strong style="color: red">Valor</strong</p>
-            </div>
-            <div id="sDespesas">
-                <h3>Saldo Final Previsto</h3>
-                <p>R$<strong style="color: green">Valor</strong</p>
-            </div>
+            
+           <div class="tudo">
+                <div class="sAtual">
+                    <h3>Saldo Atual</h3>
+                    <p>R$<strong style="color: green">'Valor'</strong</p>
+                </div>
+                <div class="sDespesas">
+                    <h3>Despesa Atual</h3>
+                    <p>R$<strong style="color: red">'Valor'</strong</p>
+                </div>
+                <div class="sPrevisto">
+                    <h3>Saldo Final Previsto</h3>
+                    <p>R$<strong>'Valor'</strong</p>
+                </div>
+           </div>
+            
+            <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
             <f:facet name="footer">
-                
+                <strong>ePaper 2018  - Todos os direitos reservados</strong>
             </f:facet>
+        </h:panelGrid>
         </h:form>
     </h:body>
 </html>

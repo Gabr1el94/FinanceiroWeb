@@ -10,13 +10,11 @@
                 <script type="text/javascript" src="../resources/js/script.js"></script>
     </h:head>
     <h:body>
-
-                <f:view>
+               
                     <h:form>
                         <p:outputLabel for="nome" value="Nome Completo:"><br class="cle"/>
                             <p:inputText value="#{geBean.gerente.nome}" id="nome"/><br class="cle"/>
-                    </p:outputLabel>
-                        
+                    </p:outputLabel> 
                     <p:outputLabel for="dataNascimento" value="Data Nascimento:" ><br class="cle"/>
                         <p:calendar id="dataNascimento" pattern="dd/MM/yyyy" mode="popup" value="#{geBean.gerente.dataNascimento.time}" showOn="button">
                      </p:calendar>
@@ -34,12 +32,10 @@
                         <p:password value="#{f}" id="reSenha"/><br class="cle"/>
                     </p:outputLabel>
                         <br class="cle"/>
-                        
                         <p:commandButton id="cadastrar" value="Cadastrar" action="#{geBean.salvar()}" />
                         <p:button value="Limpar" id="limpar" onclick="#{geBean.limpar()}"/>
                     </h:form>
-                </f:view>
+                
         <br/>
-        
     </h:body>
 </html>

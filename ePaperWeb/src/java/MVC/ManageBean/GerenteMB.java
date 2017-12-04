@@ -13,8 +13,8 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-/**
- *
+
+ /*
  * @author gabriel
  */
 @ManagedBean(name = "geBean")
@@ -29,7 +29,6 @@ public class GerenteMB implements Serializable {
     public GerenteMB() {
         this.gerente = new Gerente();
     }
-
     //Ajax.oncomplete("alert('peek-a-boo');");
     public String prepararAdicionarGerente() {
         gerente = new Gerente();

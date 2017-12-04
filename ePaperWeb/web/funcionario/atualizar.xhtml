@@ -1,12 +1,62 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>ePapepr - Aterar</title>
+        <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
+         <script type="text/javascript" src="../resources/js/script.js"></script>
     </h:head>
     <h:body>
-        Hello from Facelets
+   
+        <f:facet name="header">
+                        <p:growl id="messages"/>
+                  <p:menubar>
+                      <p:menuitem value="Home" url="#" icon="ui-icon-home" />
+                      <p:menuitem value="Movimentação" url="#" icon=" ui-icon-refresh" />
+                      <p:submenu label="Funcionário" icon="ui-icon-person">
+                         <p:menuitem value="Cadastrar" url="#" icon="ui-icon-plusthick" />
+                         <p:menuitem value="Alterar" url="#" icon=" ui-icon-minusthick" />
+                         <p:menuitem value="Consulta" url="#" icon="ui-icon-search" />
+                      </p:submenu>
+                      <p:menuitem value="Relatório" url="#" icon="ui-icon-clipboard" />
+                      <p:menuitem value="Conta" url="#" />
+                  </p:menubar>
+            </f:facet>  
+        
+            <h:form>
+                    <p:outputLabel for="nome" value="Nome Completo:"><br class="cle"/>
+                        <p:inputText value="#{geBean.gerente.nome}"  id="nome"/><br class="cle"/>
+                    </p:outputLabel>
+                     <p:outputLabel for="dataNascimento" value="Data Nascimento:" ><br class="cle"/>
+                         <p:calendar  id="dataNascimento"  pattern="dd/MM/yyyy" mode="popup"  showOn="button">
+                     </p:calendar>
+                    </p:outputLabel><br class="cle"/>
+                    <p:outputLabel for="cpf" value="Cpf:"><br class="cle"/>
+                        <p:inputMask  mask="999.999.999-99" value="#{geBean.gerente.cpf}" id="cpf" /><br class="cle"/>
+                    </p:outputLabel>
+                    <p:outputLabel for="email" value="Email:"><br class="cle"/>
+                        <p:inputText  value="#{geBean.gerente.email}" id="email"/><br class="cle"/>
+                    </p:outputLabel>
+                    <p:outputLabel for="senha" value="Senha:"><br class="cle"/>
+                        <p:password  value="#{geBean.gerente.senha}" id="senha"/><br class="cle"/>
+                    </p:outputLabel>
+                    <p:outputLabel for="reSenha" value="Repetir Senha:"><br class="cle"/>
+                        <p:password value="#{f}"  id="reSenha"/><br class="cle"/>
+                    </p:outputLabel>
+                        <br class="cle"/>
+                        <p:commandButton id="atualizar" value="Atualizar" action="#{geBean.update()}" />
+                        <p:button value="Limpar" id="limpar" onclick="#{geBean.limpar()}"/>
+            </h:form>
+        
+         <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
+                    <f:facet name="footer">
+                        <strong>ePaper 2018  - Todos os direitos reservados</strong>
+                    </f:facet>
+        </h:panelGrid>
+
     </h:body>
 </html>
 

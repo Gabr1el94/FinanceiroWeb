@@ -24,9 +24,11 @@
         <welcome-file>faces/funcionario/cadastro.xhtml</welcome-file>         
         <welcome-file>faces/gerente/index.xhtml</welcome-file>
         <welcome-file>faces/funcionario/index.xhtml</welcome-file>
+        <welcome-file>faces/movimentacao/index.xhtml</welcome-file>
+        <welcome-file>faces/relatorio/index.xhtml</welcome-file>
         <welcome-file>faces/funcinario/atualizar.xhtml</welcome-file>
         <welcome-file>faces/gerente/atualizar.xhtml</welcome-file>
-        <welcome-file>faces/gerente/lista.xhtml</welcome-file>
-        <welcome-file>faces/funcinario/lista.xhtml</welcome-file>
+        <welcome-file>faces/gerente/consulta.xhtml</welcome-file>
+        <welcome-file>faces/funcinario/consulta.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

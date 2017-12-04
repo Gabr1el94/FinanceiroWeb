@@ -6,15 +6,15 @@
           
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>ePaper - Lista</title>
+        <title>ePaper - Consulta</title>
          <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
          <script type="text/javascript" src="../resources/js/script.js"></script>
     </h:head>
     <h:body>
         
-        <h:form id="cadastroGerente">
+        <h:form id="buscaGerente">
             <p:inputText required="true" value="#{geBean.gerente.nome}" id="nome"/>
-            <p:commandButton value="#{txt.botaoPesquisar}" icon="ui-icon-search" onclick="#{f}" />
+            <p:commandButton  icon="ui-icon-search" onclick="#{f}" />
         </h:form>
         <br class="cle"/>
         
@@ -24,25 +24,31 @@
                         <f:facet name="header">
                             Lista de Gerentes
                         </f:facet>
-
+                       <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
                         <p:column headerText="Nome">
-                            <h:outputText value="#{car.id}" />
+                            <h:outputText value="#{ger}" />
                         </p:column>
                     
                         <p:column headerText="Cpf">
-                            <h:outputText value="#{car.year}" />
+                            <h:outputText value="#{ger}" />
                         </p:column>
                     
                          <p:column headerText="Data Nascimento">
-                            <h:outputText value="#{car.year}" />
+                            <h:outputText value="#{ger}" />
                         </p:column>
                     
                         <p:column headerText="Email">
-                            <h:outputText value="#{car.year}" />
+                            <h:outputText value="#{ger}" />
                         </p:column>
+                        
+                    	<p:column headerText="Remover" style="text-align: center; width: 100px">  	               
+                            <h:commandButton value="Deletar" action="#{f}"  />	            
+                        </p:column>	
+                        
                 </p:dataTable>
             </h:form>
         </f:view>
+        
     </h:body>
 </html>
 
