@@ -60,8 +60,12 @@ public class LoginMB implements Serializable {
                Fachada f = new Fachada();
                 for (Gerente gerente1 : f.listarGerentes()) {
                     if (gerente1.getEmail().equals(getEmail())&&gerente1.getSenha().equals(getSenha())) {
+                        
+                        GerenteMB gerenteBean = new GerenteMB();
+                        gerenteBean.setGerenteLogado(gerente1);
+                        
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("faces/funcionario/cadastro.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/atualizar.xhtml");
                     }else{
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
                         

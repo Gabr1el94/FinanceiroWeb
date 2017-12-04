@@ -24,10 +24,12 @@ public class GerenteMB implements Serializable {
     // String nome, email, cpf, senha;
     // Calendar dataNascimento = Calendar.getInstance();
     private Gerente gerente;
+    private Gerente gerenteLogado;
   
    
     public GerenteMB() {
         this.gerente = new Gerente();
+        this.gerenteLogado = new Gerente();
     }
     //Ajax.oncomplete("alert('peek-a-boo');");
     public String prepararAdicionarGerente() {
@@ -42,6 +44,15 @@ public class GerenteMB implements Serializable {
     public void setGerente(Gerente gerente) {
         this.gerente = gerente;
     }
+
+    public Gerente getGerenteLogado() {
+        return gerenteLogado;
+    }
+
+    public void setGerenteLogado(Gerente gerenteLogado) {
+        this.gerenteLogado = gerenteLogado;
+    }
+    
     
    
 
@@ -58,7 +69,7 @@ public class GerenteMB implements Serializable {
     public void update() {
         try {
             Fachada f = new Fachada();
-            f.atualizarGerente(gerente, gerente);
+            f.atualizarGerente(gerenteLogado, gerente);
             gerente = new Gerente();
         } catch (Exception e) {
             e.getMessage();
