@@ -10,6 +10,7 @@ import MVC.classes.Gerente;
 
 import MVC.negocio.Fachada;
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -25,8 +26,9 @@ import org.hibernate.Session;
 @SessionScoped
 public class LoginMB implements Serializable {
 
-    private String email, senha;
-    String tipo;
+    private String email, senha, nome, cpf;
+    private Calendar dataNascimento;
+    private String tipo;
 
     public void efetuarLogin() {
         if (tipo.equals("F")) {
@@ -62,10 +64,17 @@ public class LoginMB implements Serializable {
             Fachada f = new Fachada();
             for (Gerente gerente1 : f.listarGerentes()) {
                 if (gerente1.getEmail().equals(getEmail()) && gerente1.getSenha().equals(getSenha())) {
-
+                    this.nome = gerente1.getNome();
+                    this.cpf = gerente1.getCpf();
+                    this.dataNascimento = gerente1.getDataNascimento();
+                    
                     FacesContext facesContext = FacesContext.getCurrentInstance();
                     HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
                     session.setAttribute("email", getEmail());
+                    session.setAttribute("nome", getNome());
+                    session.setAttribute("cpf", getCpf());
+                    session.setAttribute("senha", getSenha());
+                    
                     FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/atualizar.xhtml");
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
@@ -79,6 +88,30 @@ public class LoginMB implements Serializable {
 
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Calendar getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Calendar dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    
     public String getEmail() {
         return email;
     }
