@@ -27,6 +27,7 @@ public class GerenteMB implements Serializable {
     private String nome, email, cpf, senha;
     private Calendar dataNascimento = Calendar.getInstance();
     private Gerente gerente;
+    private Gerente gerenteSelecionado;
   
     private List<Gerente> listaGerente = new ArrayList<Gerente>();
     
@@ -40,6 +41,15 @@ public class GerenteMB implements Serializable {
         return "gerenciarGerente";
     }
 
+    public Gerente getGerenteSelecionado() {
+        return gerenteSelecionado;
+    }
+
+    public void setGerenteSelecionado(Gerente gerenteSelecionado) {
+        this.gerenteSelecionado = gerenteSelecionado;
+    }
+    
+    
     public Gerente getGerente() {
         return gerente;
     }
@@ -74,8 +84,10 @@ public class GerenteMB implements Serializable {
                 
                 Fachada f = new Fachada();
                  for (Gerente gerente : f.listarGerentes()) {
+                     if(gerente.getId() == this.gerenteSelecionado.getId()){
                          f.removerGerente(gerente.getId());
                          break;
+                     }
                  }
             
              } catch (Exception e) {

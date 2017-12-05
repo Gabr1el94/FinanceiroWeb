@@ -20,7 +20,13 @@
         
         <f:view>
             <h:form>
-                <p:dataTable var="item" id="item" value="#{geBean.listaGerente}">
+                <p:dataTable var="item" 
+                             id="item" 
+                             value="#{geBean.listaGerente}"
+                             selectionMode ="single"
+                             selection = "#{geBean.gerenteSelecionado}"
+                             rowKey="#{geBean.gerente.id}">
+                             
                         <f:facet name="header">
                             Lista de Gerentes
                         </f:facet>
