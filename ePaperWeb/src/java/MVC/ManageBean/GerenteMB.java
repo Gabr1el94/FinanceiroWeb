@@ -72,7 +72,11 @@ public class GerenteMB implements Serializable {
     public void remove(){
             try {
                 Fachada f = new Fachada();
-                f.removerGerente(id);
+                 for (Gerente gerente : f.listarGerentes()) {
+                    
+                         f.removerGerente(gerente.getId());
+                 }
+            
              } catch (Exception e) {
                  e.getMessage();
              }
