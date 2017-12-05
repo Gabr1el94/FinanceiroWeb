@@ -9,6 +9,9 @@ import MVC.classes.Gerente;
 
 import MVC.negocio.Fachada;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -21,15 +24,17 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class GerenteMB implements Serializable {
 
-    // String nome, email, cpf, senha;
-    // Calendar dataNascimento = Calendar.getInstance();
+    private String email, senha, nome, cpf;
+    private Calendar dataNascimento = Calendar.getInstance();
+    private String tipo;
+    private int id;
     private Gerente gerente;
-    private Gerente gerenteLogado;
   
+        private List<Gerente> listaGerente = new ArrayList<Gerente>();
    
     public GerenteMB() {
         this.gerente = new Gerente();
-        this.gerenteLogado = new Gerente();
+        
     }
     //Ajax.oncomplete("alert('peek-a-boo');");
     public String prepararAdicionarGerente() {
@@ -37,45 +42,37 @@ public class GerenteMB implements Serializable {
         return "gerenciarGerente";
     }
 
-    public Gerente getGerente() {
-        return gerente;
+    public List<Gerente> getListaGerente() {
+        
+            Fachada f = new Fachada();
+            this.listaGerente = f.listarGerentes();
+            
+        return listaGerente;
     }
 
-    public void setGerente(Gerente gerente) {
-        this.gerente = gerente;
-    }
-
-    public Gerente getGerenteLogado() {
-        return gerenteLogado;
-    }
-
-    public void setGerenteLogado(Gerente gerenteLogado) {
-        this.gerenteLogado = gerenteLogado;
+    public void setListaGerente(List<Gerente> listaGerente) {
+        this.listaGerente = listaGerente;
     }
     
-    
-   
-
     public void salvar() {
         try {
             Fachada f = new Fachada();
             f.inserirGerente(gerente);
-            limpar();
+           
         } catch (Exception e) {
             e.getMessage();
         }
     }
-    
-    public void update() {
-        try {
-            Fachada f = new Fachada();
-            f.atualizarGerente(gerenteLogado, gerente);
-            gerente = new Gerente();
-        } catch (Exception e) {
-            e.getMessage();
-        }
+
+    public void remove(){
+            try {
+                Fachada f = new Fachada();
+                f.removerGerente(id);
+             } catch (Exception e) {
+                 e.getMessage();
+             }
     }
-    
+
     public void limpar() {
         gerente = new Gerente();
     }

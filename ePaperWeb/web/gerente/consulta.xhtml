@@ -17,34 +17,38 @@
             <p:commandButton  icon="ui-icon-search" onclick="#{f}" />
         </h:form>
         <br class="cle"/>
-        
         <f:view>
             <h:form>
-                <p:dataTable var="ger" value="#{geBean.gerente}">
+                <p:dataTable var="item" id="item" value="#{geBean.listaGerente}">
                         <f:facet name="header">
                             Lista de Gerentes
                         </f:facet>
-                       <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                        
+                        <p:column headerText="Id">
+                            <h:outputText id="id" value="#{item.id}" />
+                        </p:column>
+                    
                         <p:column headerText="Nome">
-                            <h:outputText value="#{ger}" />
+                            <h:outputText value="#{item.nome}" />
                         </p:column>
                     
                         <p:column headerText="Cpf">
-                            <h:outputText value="#{ger}" />
+                            <h:outputText value="#{item.cpf}" />
                         </p:column>
                     
                          <p:column headerText="Data Nascimento">
-                            <h:outputText value="#{ger}" />
+                             <h:outputText  value="#{item.dataNascimento.time}" >
+                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
+                             </h:outputText>
                         </p:column>
                     
                         <p:column headerText="Email">
-                            <h:outputText value="#{ger}" />
+                            <h:outputText value="#{item.email}" />
                         </p:column>
                         
                     	<p:column headerText="Remover" style="text-align: center; width: 100px">  	               
-                            <h:commandButton value="Deletar" action="#{f}"  />	            
-                        </p:column>	
-                        
+                            <h:commandButton value="Deletar" action="#{geBean.remove()}"  />	            
+                        </p:column>	            
                 </p:dataTable>
             </h:form>
         </f:view>

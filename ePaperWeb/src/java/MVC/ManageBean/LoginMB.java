@@ -25,11 +25,17 @@ import org.hibernate.Session;
 @ManagedBean(name = "loginMB")
 @SessionScoped
 public class LoginMB implements Serializable {
-
+    
     private String email, senha, nome, cpf;
     private Calendar dataNascimento;
     private String tipo;
+    private Gerente gerente;
+    private int id;
 
+    public LoginMB() {
+        this.gerente = new Gerente();
+        
+    }
     public void efetuarLogin() {
         if (tipo.equals("F")) {
             checarFuncionario();
@@ -59,21 +65,24 @@ public class LoginMB implements Serializable {
 
     }
 
-    public void checarGerente() {
+     public void checarGerente() {
         try {
             Fachada f = new Fachada();
             for (Gerente gerente1 : f.listarGerentes()) {
                 if (gerente1.getEmail().equals(getEmail()) && gerente1.getSenha().equals(getSenha())) {
                     this.nome = gerente1.getNome();
+                    this.id = gerente1.getId();
                     this.cpf = gerente1.getCpf();
                     this.dataNascimento = gerente1.getDataNascimento();
-                    
+                    this.senha = gerente1.getSenha();
                     FacesContext facesContext = FacesContext.getCurrentInstance();
                     HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
                     session.setAttribute("email", getEmail());
                     session.setAttribute("nome", getNome());
                     session.setAttribute("cpf", getCpf());
+                    session.setAttribute("id", getId());
                     session.setAttribute("senha", getSenha());
+                    session.setAttribute("dataNascimento", getDataNascimento());
                     
                     FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/atualizar.xhtml");
                 } else {
@@ -86,6 +95,38 @@ public class LoginMB implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", e.getMessage()));
         }
 
+    }
+    
+    
+         public void updateGerente() {
+        try {
+            Fachada f = new Fachada();
+            gerente.setId(id);
+            gerente.setNome(nome);
+            gerente.setSenha(senha);
+            gerente.setEmail(email);
+            gerente.setDataNascimento(dataNascimento);
+            gerente.setCpf(cpf);
+            f.atualizarGerente(gerente, gerente);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+    public Gerente getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(Gerente gerente) {
+        this.gerente = gerente;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
