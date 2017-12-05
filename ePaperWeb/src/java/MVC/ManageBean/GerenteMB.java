@@ -23,9 +23,9 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean(name = "geBean")
 @ViewScoped
 public class GerenteMB implements Serializable {
-    int id;
-    String nome, email, cpf, senha;
-    Calendar dataNascimento = Calendar.getInstance();
+    private int id;
+    private String nome, email, cpf, senha;
+    private Calendar dataNascimento = Calendar.getInstance();
     private Gerente gerente;
   
     private List<Gerente> listaGerente = new ArrayList<Gerente>();
@@ -71,10 +71,11 @@ public class GerenteMB implements Serializable {
 
     public void remove(){
             try {
+                
                 Fachada f = new Fachada();
                  for (Gerente gerente : f.listarGerentes()) {
-                    
                          f.removerGerente(gerente.getId());
+                         break;
                  }
             
              } catch (Exception e) {
