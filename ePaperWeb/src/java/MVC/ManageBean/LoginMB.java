@@ -25,17 +25,19 @@ import org.hibernate.Session;
 @ManagedBean(name = "loginMB")
 @SessionScoped
 public class LoginMB implements Serializable {
-    
+
     private String email, senha, nome, cpf;
-    private Calendar dataNascimento;
+    private Calendar dataNascimento = Calendar.getInstance();
     private String tipo;
-    private Gerente gerente;
     private int id;
+    private Gerente gerente;
+
 
     public LoginMB() {
         this.gerente = new Gerente();
         
     }
+
     public void efetuarLogin() {
         if (tipo.equals("F")) {
             checarFuncionario();
@@ -65,7 +67,7 @@ public class LoginMB implements Serializable {
 
     }
 
-     public void checarGerente() {
+    public void checarGerente() {
         try {
             Fachada f = new Fachada();
             for (Gerente gerente1 : f.listarGerentes()) {
@@ -97,8 +99,7 @@ public class LoginMB implements Serializable {
 
     }
     
-    
-         public void updateGerente() {
+     public void updateGerente() {
         try {
             Fachada f = new Fachada();
             gerente.setId(id);
@@ -113,6 +114,14 @@ public class LoginMB implements Serializable {
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Gerente getGerente() {
         return gerente;
     }
@@ -121,13 +130,7 @@ public class LoginMB implements Serializable {
         this.gerente = gerente;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    
 
     public String getNome() {
         return nome;
@@ -142,7 +145,7 @@ public class LoginMB implements Serializable {
     }
 
     public void setDataNascimento(Calendar dataNascimento) {
-        this.dataNascimento = dataNascimento;
+        this.dataNascimento =  dataNascimento;
     }
 
     public String getCpf() {

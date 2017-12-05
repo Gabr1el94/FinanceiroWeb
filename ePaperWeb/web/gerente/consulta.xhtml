@@ -14,9 +14,10 @@
         
         <h:form id="buscaGerente">
             <p:inputText required="true" value="#{geBean.gerente.nome}" id="nome"/>
-            <p:commandButton  icon="ui-icon-search" onclick="#{f}" />
+            <p:commandButton  icon="ui-icon-search" action="#{f}" />
         </h:form>
         <br class="cle"/>
+        
         <f:view>
             <h:form>
                 <p:dataTable var="item" id="item" value="#{geBean.listaGerente}">
@@ -48,7 +49,8 @@
                         
                     	<p:column headerText="Remover" style="text-align: center; width: 100px">  	               
                             <h:commandButton value="Deletar" action="#{geBean.remove()}"  />	            
-                        </p:column>	            
+                        </p:column>	
+                        
                 </p:dataTable>
             </h:form>
         </f:view>

@@ -25,36 +25,3 @@
 }
 
 /*------------Home Gerente----------------*/
-div.tudo {
-        height: 100%;
-        background: -webkit-linear-gradient(top, #088fad 20%, #00d5ff 100%);
-}
-    
-div.sAtual {
-        width: 38%;
-        display: inline-block;
-        font-size: 3vw;
-        text-align: center;
-        padding: 5vw 0vw 5vw 0vw;
-        min-width:40vw;
-}
- div.sDespesas {
-        width: 38%;
-        display: inline-block;
-        margin-right: 0vw;
-        font-size: 3vw;
-        text-align: center;
-        padding: 5vw 0vw 5vw 0vw;
-        min-width:40vw;
-        float:right;
-}
-div.sPrevisto {
-        width: 38%;
-        display: inline-block;
-        margin-right: 0vw;
-        font-size: 3vw;
-        text-align: center;
-        padding: 5vw 0vw 5vw 0vw;
-        min-width:40vw;
-        float:right;
-}

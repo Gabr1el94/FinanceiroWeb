@@ -23,23 +23,29 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean(name = "geBean")
 @ViewScoped
 public class GerenteMB implements Serializable {
-
-    private String email, senha, nome, cpf;
-    private Calendar dataNascimento = Calendar.getInstance();
-    private String tipo;
-    private int id;
+    int id;
+    String nome, email, cpf, senha;
+    Calendar dataNascimento = Calendar.getInstance();
     private Gerente gerente;
   
-        private List<Gerente> listaGerente = new ArrayList<Gerente>();
-   
+    private List<Gerente> listaGerente = new ArrayList<Gerente>();
+    
     public GerenteMB() {
         this.gerente = new Gerente();
-        
+       
     }
     //Ajax.oncomplete("alert('peek-a-boo');");
     public String prepararAdicionarGerente() {
         gerente = new Gerente();
         return "gerenciarGerente";
+    }
+
+    public Gerente getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(Gerente gerente) {
+        this.gerente = gerente;
     }
 
     public List<Gerente> getListaGerente() {
@@ -53,12 +59,11 @@ public class GerenteMB implements Serializable {
     public void setListaGerente(List<Gerente> listaGerente) {
         this.listaGerente = listaGerente;
     }
-    
+
     public void salvar() {
         try {
             Fachada f = new Fachada();
             f.inserirGerente(gerente);
-           
         } catch (Exception e) {
             e.getMessage();
         }
@@ -72,8 +77,57 @@ public class GerenteMB implements Serializable {
                  e.getMessage();
              }
     }
-
+    
     public void limpar() {
         gerente = new Gerente();
     }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public Calendar getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Calendar dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
 }
