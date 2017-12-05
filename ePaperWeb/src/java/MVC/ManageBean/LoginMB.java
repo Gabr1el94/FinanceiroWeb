@@ -31,10 +31,12 @@ public class LoginMB implements Serializable {
     private String tipo;
     private int id;
     private Gerente gerente;
+    private Funcionario funcionario;
 
 
     public LoginMB() {
         this.gerente = new Gerente();
+        this.funcionario = new Funcionario();
         
     }
 
@@ -113,7 +115,21 @@ public class LoginMB implements Serializable {
             e.getMessage();
         }
     }
-
+  public void updateFuncionario() {
+        try {
+            Fachada f = new Fachada();
+            funcionario.setId(id);
+            funcionario.setNome(nome);
+            funcionario.setSenha(senha);
+            funcionario.setEmail(email);
+            funcionario.setDataNascimento(dataNascimento);
+            funcionario.setCpf(cpf);
+           
+         f.atualizarFuncionario(funcionario, funcionario);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+  }
     public int getId() {
         return id;
     }
@@ -178,6 +194,16 @@ public class LoginMB implements Serializable {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+ 
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
 }

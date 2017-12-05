@@ -26,29 +26,31 @@
                   </p:menubar>
             </f:facet>  
         
-            <h:form>
+               <h:form>
+                <p style="display: none" >Bem Vindo #{loginMB.nome}</p>
+                <p style="display: none"> #{loginMB.id}</p>
                     <p:outputLabel for="nome" value="Nome Completo:"><br class="cle"/>
-                        <p:inputText value="#{geBean.gerente.nome}"  id="nome"/><br class="cle"/>
+                        <p:inputText value="#{loginMB.funcionario.nome}"  id="nome"/><br class="cle"/>
                     </p:outputLabel>
                      <p:outputLabel for="dataNascimento" value="Data Nascimento:" ><br class="cle"/>
-                         <p:calendar  id="dataNascimento"  pattern="dd/MM/yyyy" mode="popup"  showOn="button">
-                     </p:calendar>
+                         <p:calendar  id="dataNascimento" value="#{loginMB.funcionario.dataNascimento.time}"  pattern="dd/MM/yyyy" mode="popup"  showOn="button">
+                         </p:calendar>
                     </p:outputLabel><br class="cle"/>
                     <p:outputLabel for="cpf" value="Cpf:"><br class="cle"/>
-                        <p:inputMask  mask="999.999.999-99" value="#{geBean.gerente.cpf}" id="cpf" /><br class="cle"/>
+                        <p:inputMask  mask="999.999.999-99" value="#{loginMB.funcionario.cpf}" id="cpf" /><br class="cle"/>
                     </p:outputLabel>
                     <p:outputLabel for="email" value="Email:"><br class="cle"/>
-                        <p:inputText  value="#{geBean.gerente.email}" id="email"/><br class="cle"/>
+                        <p:inputText  value="#{loginMB.funcionario.email}" id="email"/><br class="cle"/>
                     </p:outputLabel>
                     <p:outputLabel for="senha" value="Senha:"><br class="cle"/>
-                        <p:password  value="#{geBean.gerente.senha}" id="senha"/><br class="cle"/>
+                        <p:password   value="#{loginMB.funcionario.senha}" id="senha"/><br class="cle"/>
                     </p:outputLabel>
                     <p:outputLabel for="reSenha" value="Repetir Senha:"><br class="cle"/>
                         <p:password value="#{f}"  id="reSenha"/><br class="cle"/>
                     </p:outputLabel>
                         <br class="cle"/>
-                        <p:commandButton id="atualizar" value="Atualizar" action="#{geBean.update()}" />
-                        <p:button value="Limpar" id="limpar" onclick="#{geBean.limpar()}"/>
+                        <p:commandButton id="atualizar" value="Atualizar" action="#{loginMB.updateFuncionario()}" />
+                    <p:button value="Limpar" id="limpar" onclick="#{fuBean.limpar()}"/>
             </h:form>
         
          <h:panelGrid id="pgFooter" columns="2" cellpadding="4">

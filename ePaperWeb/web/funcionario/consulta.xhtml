@@ -25,7 +25,7 @@
                   </p:menubar>
         </f:facet>  
         <h:form id="buscaFuncionario">
-            <p:inputText required="true" value="#{geBean}" id="nome"/>
+            <p:inputText required="true" value="#{fuBean}" id="nome"/>
             <p:commandButton icon="ui-icon-search" onclick="#{f}" />
         </h:form>
         <br class="cle"/>
@@ -33,7 +33,7 @@
       
             <h:form>
                 <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
-                <p:dataTable var="fun" value="#{geBean}">
+                <p:dataTable var="fun" value="#{fuBean}">
                         <f:facet name="header">
                             Lista de Funcionários
                         </f:facet>
