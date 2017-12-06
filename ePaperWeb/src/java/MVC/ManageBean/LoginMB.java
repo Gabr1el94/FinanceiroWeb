@@ -88,7 +88,7 @@ public class LoginMB implements Serializable {
                     session.setAttribute("senha", getSenha());
                     session.setAttribute("dataNascimento", getDataNascimento());
                     
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/consulta.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("faces/movimentacao/index.xhtml");
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
 

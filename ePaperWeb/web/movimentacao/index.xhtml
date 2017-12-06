@@ -36,24 +36,24 @@
                     <h:form>
                          
                         <h:outputText value="Pago: " />
-                         <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" /><br class="cle"/>
+                        <p:selectBooleanCheckbox value="#{moBean.status}" /><br class="cle"/>
                          
                          <h:outputText  value="Categoria:" /><br class="cle"/>
                          
-                         <p:inputText id="cateoria" value="#{basicView.text}" /><br class="cle"/>
+                         <p:inputText id="cateoria" value="#{moBean.categoria}" /><br class="cle"/>
                          
                          <h:outputText  value="Descrição:" /><br class="cle"/>
                          
-                         <p:inputText id="descricao" value="#{basicView.text}" /><br class="cle"/>
+                         <p:inputText id="descricao" value="#{moBean.descricao}" /><br class="cle"/>
                          <h:outputText  value="Valor:" /><br class="cle"/>
-                         <p:inputText id="valor" value="#{basicView.text}" >
+                         <p:inputText id="valor" value="#{moBean.valor}" >
                               <f:convertNumber integerOnly="true" />
                          </p:inputText>
                          <br class="cle"/>
                          <h:outputText value="Data Emissão" /><br class="cle"/>
-                            <p:calendar id="emissao" pattern="dd/MM/yyyy" mode="popup" showOn="button">
+                         <p:calendar id="emissao" pattern="dd/MM/yyyy" mode="popup"  value="#{moBean.dataEmissao.time}" showOn="button">
                             </p:calendar>
-                         <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu  id="tipo" value = "#{loginMB.tipo}">
+                         <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu  id="tipo" value = "#{moBean.tipo}">
                  
                             <f:selectItem  itemValue = "" itemLabel = "Selecione" /> 
                             <f:selectItem  itemValue = "F" itemLabel = "Despesa" /> 
@@ -61,8 +61,8 @@
                  
                         </p:selectOneMenu></p:outputLabel> <br class="cle"/>
                          <br class="cle"/><br class="cle"/>
-                          <p:commandButton id="cadastrar" value="Cadastrar" action="#{d}" />
-                          <p:button value="Limpar" id="limpar" onclick="#{f}"/>
+                         <p:commandButton id="cadastrar" value="Cadastrar" action="#{moBean.salvar()}" />
+                         <p:button value="Limpar" id="limpar" onclick="#{moBean.limpar()}"/>
                          
                         <br class="cle"/>
                         

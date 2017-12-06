@@ -9,6 +9,7 @@ import MVC.classes.Gerente;
 import MVC.classes.Movimentacao;
 import MVC.classes.Tipo;
 import MVC.negocio.Fachada;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -25,12 +26,12 @@ import                org.primefaces.component.datatable.DataTable;
  */
 @ManagedBean(name = "moBean")
 @ViewScoped
-public class MovimentacaoMB {
+public class MovimentacaoMB implements Serializable {
      private int id;
     private boolean status;
     private Calendar dataEmissao = Calendar.getInstance();
     private String descricao, categoria;
-    private double valor;
+    private float valor;
     private Tipo tipo;
     private Gerente gerente;
     private List<Movimentacao> listaMovimentacao = new ArrayList<Movimentacao>();
@@ -125,7 +126,7 @@ public class MovimentacaoMB {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(float valor) {
         this.valor = valor;
     }
 

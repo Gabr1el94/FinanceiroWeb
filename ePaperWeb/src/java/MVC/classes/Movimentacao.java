@@ -46,7 +46,7 @@ public class Movimentacao implements Serializable {
     private String categoria;
 
     @Column(name = "Valor", insertable = true, updatable = true, nullable = false, scale = 2)
-    private double valor;
+    private float valor;
 
     @Enumerated(EnumType.STRING)
     @Column(insertable = true, updatable = true, nullable = true)
@@ -60,7 +60,7 @@ public class Movimentacao implements Serializable {
     public Movimentacao() {
     }
 
-    public Movimentacao(boolean status, Calendar dataEmissao, String descricao, String categoria, double valor) {
+    public Movimentacao(boolean status, Calendar dataEmissao, String descricao, String categoria, float valor) {
         this.status = status;
         this.dataEmissao = dataEmissao;
         this.descricao = descricao;

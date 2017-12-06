@@ -8,6 +8,7 @@ package MVC.ManageBean;
 import MVC.classes.Conta;
 import MVC.classes.Gerente;
 import MVC.negocio.Fachada;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +20,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean(name = "coBean")
 @ViewScoped
-public class ContaMB {
+public class ContaMB implements Serializable {
       private int id;
       private float saldo;
       private Gerente gerente;
