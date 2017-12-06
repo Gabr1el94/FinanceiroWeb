@@ -9,6 +9,7 @@ import MVC.classes.Gerente;
 import MVC.negocio.Fachada;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlDataTable;
@@ -23,12 +24,14 @@ import org.primefaces.component.datatable.DataTable;
 @ViewScoped
 public class ManipuladorDataTableGerenteMB {
     private static final long serialVersionUID = 1L;
-          
+    private String nomeGerente;      
     private DataTable dataTable;
     private List<Gerente> gerentes;
+    private Fachada f;
 
     public ManipuladorDataTableGerenteMB() {
-        gerentes = new ArrayList<Gerente>();
+        this.gerentes = new ArrayList<Gerente>();
+        this.f = new Fachada();
         listarGerentes();
     }
     
@@ -36,11 +39,21 @@ public class ManipuladorDataTableGerenteMB {
         Fachada f = new Fachada();
         this.gerentes = f.listarGerentes();
     }
+    public void buscarPeloNome(){
+        for (Gerente gerente : f.listarGerentes()) {
+                     if(gerente.getNome().equals(nomeGerente)){
+                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Usuário encontrado"));
+                     }else{
+                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuário inexistente."));
 
+                     }
+                 }
+        
+    }
     public void remove(){
             try {
                 Gerente gerenteSelecionado = (Gerente) dataTable.getRowData();
-                Fachada f = new Fachada();
+                
                  for (Gerente gerente : f.listarGerentes()) {
                      if(gerente.getId() == gerenteSelecionado.getId()){
                          f.removerGerente(gerente.getId());
@@ -68,4 +81,13 @@ public class ManipuladorDataTableGerenteMB {
     public void setGerentes(List<Gerente> gerentes) {
         this.gerentes = gerentes;
     }
+
+    public String getNomeGerente() {
+        return nomeGerente;
+    }
+
+    public void setNomeGerente(String nomeGerente) {
+        this.nomeGerente = nomeGerente;
+    }
+    
 }

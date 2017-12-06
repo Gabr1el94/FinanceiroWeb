@@ -13,8 +13,9 @@
     <h:body>
         
         <h:form id="buscaGerente">
-            <p:inputText required="true" value="#{geBean.gerente.nome}" id="nome"/>
-            <p:commandButton  icon="ui-icon-search" action="#{f}" />
+            <p:inputText required="true" value="#{manipuladorDataTableMB.nomeGerente}" id="nome"/>
+            <p:commandButton  icon="ui-icon-search" action="#{manipuladorDataTableMB.buscarPeloNome()}" />
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
         </h:form>
         <br class="cle"/>
         
