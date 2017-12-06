@@ -20,37 +20,35 @@
         
         <f:view>
             <h:form>
-                <p:dataTable var="item" 
-                             id="item" 
-                             value="#{geBean.listaGerente}"
-                             selectionMode ="single"
-                             selection = "#{geBean.gerenteSelecionado}"
-                             rowKey="#{geBean.gerenteSelecionado.id}">
+                <p:dataTable 
+                             binding="#{manipuladorDataTableMB.dataTable}"
+                      value="#{manipuladorDataTableMB.gerentes}" var="gerente"
+                      rowKey="#{manipuladorDataTableMB.gerentes.id}">
                              
                         <f:facet name="header">
                             Lista de Gerentes
                         </f:facet>
                         
                         <p:column headerText="Id">
-                            <h:outputText id="id" value="#{item.id}" />
+                            <h:outputText value="#{gerente.nome}" />
                         </p:column>
                     
                         <p:column headerText="Nome">
-                            <h:outputText value="#{item.nome}" />
+                            <h:outputText value="#{gerente.nome}" />
                         </p:column>
                     
                         <p:column headerText="Cpf">
-                            <h:outputText value="#{item.cpf}" />
+                            <h:outputText value="#{gerente.cpf}" />
                         </p:column>
                     
                          <p:column headerText="Data Nascimento">
-                             <h:outputText  value="#{item.dataNascimento.time}" >
+                             <h:outputText  value="#{gerente.dataNascimento.time}" >
                                  <f:convertDateTime pattern="dd/MM/yyyy"/>
                              </h:outputText>
                         </p:column>
                     
                         <p:column headerText="Email">
-                            <h:outputText value="#{item.email}" />
+                            <h:outputText value="#{gerente.email}" />
                         </p:column>
                         
                     	<p:column headerText="Remover" style="text-align: center; width: 100px">  

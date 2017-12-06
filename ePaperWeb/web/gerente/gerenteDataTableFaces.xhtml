@@ -21,14 +21,16 @@
         <f:view>
             <h:form>
                 <p:dataTable binding="#{manipuladorDataTableMB.dataTable}" 
-                             value="#{manipuladorDataTableMB.gerentes}" var="gerente">
+                             value="#{manipuladorDataTableMB.gerentes}" var="gerente"
+                             rowKey="#{geBean.gerente.id}"
+                             >
                              
                         <f:facet name="header">
                             Lista de Gerentes
                         </f:facet>
                         
                         <p:column headerText="Id">
-                            <h:outputText id="id" value="#{gerente.id}" />
+                            <h:outputText value="#{gerente.id}" />
                         </p:column>
                     
                         <p:column headerText="Nome">

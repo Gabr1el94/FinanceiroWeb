@@ -10,47 +10,45 @@
          <script type="text/javascript" src="../resources/js/script.js"></script>
     </h:head>
     <h:body>
-        <f:facet name="header">
-                        <p:growl id="messages"/>
-                  <p:menubar>
-                      <p:menuitem value="Home" url="#" icon="ui-icon-home" />
-                      <p:menuitem value="Movimentação" url="#" icon=" ui-icon-refresh" />
-                      <p:submenu label="Funcionário" icon="ui-icon-person">
-                         <p:menuitem value="Cadastrar" url="#" icon="ui-icon-plusthick" />
-                         <p:menuitem value="Alterar" url="#" icon=" ui-icon-minusthick" />
-                         <p:menuitem value="Consulta" url="#" icon="ui-icon-search" />
-                      </p:submenu>
-                      <p:menuitem value="Relatório" url="#" icon="ui-icon-clipboard" />
-                      <p:menuitem value="Conta" url="#" />
-                  </p:menubar>
-        </f:facet>  
-        
+        <h:panelGrid id="pgHeader" columns="2" cellpadding="4">
+            <f:facet name="header">
+                            <p:growl id="messages"/>
+                      <p:menubar>
+                          <p:menuitem value="Home" url="../gerente/index.xhtml" icon="ui-icon-home" />
+                          <p:menuitem value="Movimentação" url="../movimentacao/index.xhtml" icon=" ui-icon-refresh" />
+                          <p:submenu label="Funcionário" icon="ui-icon-person">
+                             <p:menuitem value="Cadastrar" url="cadastro.xhtml" icon="ui-icon-plusthick" />
+                             <p:menuitem value="Consulta" url="consulta.xhtml" icon="ui-icon-search" />
+                          </p:submenu>
+                          <p:menuitem value="Conta" url="../conta/index.xhtml" />
+                      </p:menubar>
+            </f:facet>  
+        </h:panelGrid>     
         <f:view>
             <h:form>
                 <p:outputLabel for="nome" value="Nome Completo:"><br class="cle"/>
-                    <p:inputText value="#{fuBean.funcionario.nome}" id="nome"/><br class="cle"/>
+                    <p:inputText value="#{fuBean.funcionario.nome}" required="true" id="nome"/><br class="cle"/>
                 </p:outputLabel> 
                 <p:outputLabel for="dataNascimento" value="Data Nascimento:" ><br class="cle"/>
-                    <p:calendar id="dataNascimento" pattern="dd/MM/yyyy" mode="popup" value="#{fuBean.funcionario.dataNascimento.time}" showOn="button">
+                    <p:calendar id="dataNascimento" required="true" pattern="dd/MM/yyyy" mode="popup" value="#{fuBean.funcionario.dataNascimento.time}" showOn="button">
                  </p:calendar>
                 </p:outputLabel><br class="cle"/>
                 <p:outputLabel for="cpf" value="Cpf:"><br class="cle"/>
                     <p:inputMask mask="999.999.999-99" value="#{fuBean.funcionario.cpf}" id="cpf" /><br class="cle"/>
                 </p:outputLabel>
                 <p:outputLabel for="email" value="Email:"><br class="cle"/>
-                    <p:inputText value="#{fuBean.funcionario.email}" id="email"/><br class="cle"/>
+                    <p:inputText required="true" value="#{fuBean.funcionario.email}" id="email"/><br class="cle"/>
                 </p:outputLabel>
                 <p:outputLabel for="senha" value="Senha:"><br class="cle"/>
-                    <p:password value="#{fuBean.funcionario.senha}" id="senha"/><br class="cle"/>
+                    <p:password required="true" value="#{fuBean.funcionario.senha}" id="senha"/><br class="cle"/>
                 </p:outputLabel>
-                <p:outputLabel for="reSenha" value="Repetir Senha:"><br class="cle"/>
-                    <p:password value="#{f}" id="reSenha"/><br class="cle"/>
-                </p:outputLabel>
+                
                 <br class="cle"/>
                 <p:commandButton id="cadastrar" value="Cadastrar" action="#{fuBean.salvar()}" />
                 <p:button value="Limpar" id="limpar" onclick="#{fuBean.limpar()}"/>
             </h:form>
         </f:view>
+        
         <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
             <f:facet name="footer">
                 <strong>ePaper 2018  - Todos os direitos reservados</strong>

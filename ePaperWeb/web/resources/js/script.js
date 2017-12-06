@@ -7,6 +7,7 @@ $(document).ready(function() {
     var $ = jQuery;
     $(document).ready(function() {
         $("input[id*='dataNascimento']").mask('99/99/9999');
+         $("input[id*='emissao']").mask('99/99/9999');
     });
 
 });
