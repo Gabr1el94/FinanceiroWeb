@@ -23,8 +23,9 @@ import org.primefaces.component.datatable.DataTable;
 @ManagedBean(name = "manipuladorDataTableMB")
 @ViewScoped
 public class ManipuladorDataTableGerenteMB {
+
     private static final long serialVersionUID = 1L;
-    private String nomeGerente;      
+    private String nomeGerente;
     private DataTable dataTable;
     private List<Gerente> gerentes;
     private Fachada f;
@@ -34,36 +35,39 @@ public class ManipuladorDataTableGerenteMB {
         this.f = new Fachada();
         listarGerentes();
     }
-    
+
     public void listarGerentes() {
         Fachada f = new Fachada();
         this.gerentes = f.listarGerentes();
     }
-    public void buscarPeloNome(){
-        for (Gerente gerente : f.listarGerentes()) {
-                     if(gerente.getNome().equals(nomeGerente)){
-                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Usuário encontrado"));
-                     }else{
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuário inexistente."));
 
-                     }
-                 }
-        
+    public void buscarPeloNome() {
+        for (Gerente gerente : f.listarGerentes()) {
+            if (gerente.getNome().equals(nomeGerente)) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Usuário encontrado"));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuário inexistente."));
+
+            }
+        }
+
     }
-    public void remove(){
-            try {
-                Gerente gerenteSelecionado = (Gerente) dataTable.getRowData();
-                
-                 for (Gerente gerente : f.listarGerentes()) {
-                     if(gerente.getId() == gerenteSelecionado.getId()){
-                         f.removerGerente(gerente.getId());
-                         break;
-                     }
-                 }
-                
-             } catch (Exception e) {
-                 e.getMessage();
-             }
+
+    public void remove() {
+        try {
+            Gerente gerenteSelecionado = (Gerente) dataTable.getRowData();
+
+            for (Gerente gerente : f.listarGerentes()) {
+                if (gerente.getId() == gerenteSelecionado.getId()) {
+                    f.removerGerente(gerente.getId());
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Gerente removido com sucesso!"));
+                    break;
+                }
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     public DataTable getDataTable() {
@@ -89,5 +93,5 @@ public class ManipuladorDataTableGerenteMB {
     public void setNomeGerente(String nomeGerente) {
         this.nomeGerente = nomeGerente;
     }
-    
+
 }

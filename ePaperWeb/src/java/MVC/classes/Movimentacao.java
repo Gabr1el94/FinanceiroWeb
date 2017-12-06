@@ -46,11 +46,10 @@ public class Movimentacao implements Serializable {
     private String categoria;
 
     @Column(name = "Valor", insertable = true, updatable = true, nullable = false, scale = 2)
-    private float valor;
+    private double valor;
 
-    @Enumerated(EnumType.STRING)
     @Column(insertable = true, updatable = true, nullable = true)
-    private Tipo tipo;
+    private String tipo;
 
     @ManyToOne
     @JoinColumn(name = "idGerente", referencedColumnName = "idPessoa", nullable = true, insertable = true, updatable = true, unique = false)
@@ -125,11 +124,11 @@ public class Movimentacao implements Serializable {
         this.gerente = gerente;
     }
 
-    public Tipo getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

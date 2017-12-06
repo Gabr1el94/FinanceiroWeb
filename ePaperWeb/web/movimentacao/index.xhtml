@@ -8,118 +8,76 @@
         <title>ePaper - Movimentação</title>
         <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
         <script type="text/javascript" src="../resources/js/script.js"></script>
-      
+
     </h:head>
     <h:body>
-        
-           <h:panelGrid id="pgHeader" columns="2" cellpadding="4">
-                    <f:facet name="header">
-                            <p:growl id="messages"/>
-                    <h:form>
-                          <p:menubar>
-                                <p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
-                                <p:menuitem value="Movimentação" url="../movimentacao/index.xhtml" icon=" ui-icon-refresh" />
-                                <p:submenu label="Funcionário" icon="ui-icon-person">
-                                   <p:menuitem value="Cadastrar" url="../funcionario/cadastro.xhtml" icon="ui-icon-plusthick" />
-                                   <p:menuitem value="Consulta" url="../funcionario/consulta.xhtml" icon="ui-icon-search" />
-                                </p:submenu>
-                                <p:menuitem value="Conta" url="../conta/index.xhtml" />
-                          </p:menubar>
-                  </h:form>
-                  </f:facet>  
-          </h:panelGrid>
-        
+
+        <h:panelGrid id="pgHeader" columns="2" cellpadding="4">
+            <f:facet name="header">
+                <p:growl id="messages"/>
+                <h:form>
+                    <p:menubar>
+                        <p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
+                        <p:menuitem value="Movimentação" url="../movimentacao/indexMov.xhtml" icon=" ui-icon-refresh" />
+                        <p:submenu label="Funcionário" icon="ui-icon-person">
+                            <p:menuitem value="Cadastrar" url="../funcionario/cadastro.xhtml" icon="ui-icon-plusthick" />
+                            <p:menuitem value="Consulta" url="../funcionario/consulta.xhtml" icon="ui-icon-search" />
+                        </p:submenu>
+                        <p:menuitem value="Sair" url="../login.xhtml" />
+                    </p:menubar>
+                </h:form>
+            </f:facet>
+        </h:panelGrid>
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
         <p:fieldset legend="Adicionar" toggleable="true" toggleSpeed="500">
             <p:ajax event="toggle" listener="#{f}"  />
             <h:panelGrid columns="2" cellpadding="5">
                 <f:view>
                     <h:form>
-                         
+
                         <h:outputText value="Pago: " />
-                        <p:selectBooleanCheckbox value="#{moBean.status}" /><br class="cle"/>
-                         
-                         <h:outputText  value="Categoria:" /><br class="cle"/>
-                         
-                         <p:inputText id="cateoria" value="#{moBean.categoria}" /><br class="cle"/>
-                         
-                         <h:outputText  value="Descrição:" /><br class="cle"/>
-                         
-                         <p:inputText id="descricao" value="#{moBean.descricao}" /><br class="cle"/>
-                         <h:outputText  value="Valor:" /><br class="cle"/>
-                         <p:inputText id="valor" value="#{moBean.valor}" >
-                              <f:convertNumber integerOnly="true" />
-                         </p:inputText>
-                         <br class="cle"/>
-                         <h:outputText value="Data Emissão" /><br class="cle"/>
-                         <p:calendar id="emissao" pattern="dd/MM/yyyy" mode="popup"  value="#{moBean.dataEmissao.time}" showOn="button">
-                            </p:calendar>
-                         <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu  id="tipo" value = "#{moBean.tipo}">
-                 
-                            <f:selectItem  itemValue = "" itemLabel = "Selecione" /> 
-                            <f:selectItem  itemValue = "F" itemLabel = "Despesa" /> 
-                            <f:selectItem itemValue = "G" itemLabel = "Pagamento" /> 
-                 
-                        </p:selectOneMenu></p:outputLabel> <br class="cle"/>
-                         <br class="cle"/><br class="cle"/>
-                         <p:commandButton id="cadastrar" value="Cadastrar" action="#{moBean.salvar()}" />
-                         <p:button value="Limpar" id="limpar" onclick="#{moBean.limpar()}"/>
-                         
+                        <p:selectBooleanCheckbox value="#{moBean.movimentacao.status}" /><br class="cle"/>
+
+                        <h:outputText  value="Categoria:" /><br class="cle"/>
+
+                        <p:inputText id="cateoria" value="#{moBean.movimentacao.categoria}" /><br class="cle"/>
+
+                        <h:outputText  value="Descrição:" /><br class="cle"/>
+
+                        <p:inputText id="descricao" value="#{moBean.movimentacao.descricao}" /><br class="cle"/>
+                        <h:outputText  value="Valor:" /><br class="cle"/>
+                        <p:inputText id="valor" value="#{moBean.movimentacao.valor}" >
+                            <f:convertNumber  integerOnly="true" />
+                        </p:inputText>
                         <br class="cle"/>
-                        
+                        <h:outputText value="Data Emissão" /><br class="cle"/>
+                        <p:calendar id="emissao" pattern="dd/MM/yyyy" mode="popup"  value="#{moBean.movimentacao.dataEmissao.time}" showOn="button">
+                        </p:calendar><br class="cle"/>
+                        <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu  id="tipo" value = "#{moBean.movimentacao.tipo}">
+
+                                <f:selectItem  itemValue = "" itemLabel = "Selecione" />
+                                <f:selectItem  itemValue = "F" itemLabel = "Despesa" />
+                                <f:selectItem itemValue = "G" itemLabel = "Pagamento" />
+
+                            </p:selectOneMenu></p:outputLabel> <br class="cle"/>
+                        <br class="cle"/><br class="cle"/>
+                        <p:commandButton id="cadastrar" value="Cadastrar" action="#{moBean.salvar()}" />
+                        <p:button value="Limpar" id="limpar" onclick="#{moBean.limpar()}"/>
+
+                        <br class="cle"/>
+
                     </h:form>
                 </f:view>
-                
+
             </h:panelGrid>
-            
+
         </p:fieldset>
-      
+
         <br class="cle"/><br class="cle"/><br class="cle"/>
-       
-       <p:fieldset legend="Dados Cadastrados" toggleable="true" toggleSpeed="500">
-            <p:ajax event="toggle" listener="#{f}"  />
-            <h:panelGrid columns="2" cellpadding="5">
-               <h:form>
-            <p:dataTable var="ger" >
-                <f:facet name="header">
-                    Lista Movimentação
-                </f:facet>
-                <p:column headerText="Pago">
-                    <h:outputText  />
-                </p:column>
 
-                <p:column headerText="Valor">
-                    <h:outputText  />
-                </p:column>
+        <p:separator />
 
-                <p:column headerText="Descrição">
-                    <h:outputText  />
-                </p:column>
-
-                <p:column headerText="Emissão">
-                    <h:outputText  />
-                </p:column>
-
-                <p:column headerText="Tipo">
-                    <h:outputText  />
-                </p:column>
-
-                <p:column headerText="Alterar">
-                    <h:commandButton value="Alterar" action="#{f}"  />
-                </p:column>
-                
-                 <p:column headerText="Remover">
-                     <h:commandButton value="Deletar" action="#{f}"  />
-                </p:column>
-            </p:dataTable>
-
-        </h:form>
-        </h:panelGrid>
-       </p:fieldset>
-                 
-                <br class="cle"/><br class="cle"/><br class="cle"/>
-
-         <p:separator />
-         
         <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
             <f:facet name="footer">
                 <strong>ePaper 2018  - Todos os direitos reservados</strong>

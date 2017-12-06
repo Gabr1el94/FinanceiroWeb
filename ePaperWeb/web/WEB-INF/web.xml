@@ -21,7 +21,7 @@
     <welcome-file-list>
         <welcome-file>faces/login.xhtml</welcome-file>
         <welcome-file>faces/gerente/cadastro.xhtml</welcome-file>
-        <welcome-file>faces/funcionario/cadastro.xhtml</welcome-file>         
+        <welcome-file>faces/funcionario/cadastro.xhtml</welcome-file>
         <welcome-file>faces/gerente/index.xhtml</welcome-file>
         <welcome-file>faces/funcionario/index.xhtml</welcome-file>
         <welcome-file>faces/movimentacao/index.xhtml</welcome-file>
@@ -31,5 +31,6 @@
         <welcome-file>faces/gerente/consulta.xhtml</welcome-file>
         <welcome-file>faces/funcinario/consulta.xhtml</welcome-file>
         <welcome-file>faces/gerente/gerenteDataTable.xhtml</welcome-file>
+        <welcome-file>faces/funcionario/funcionarioDataTable.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

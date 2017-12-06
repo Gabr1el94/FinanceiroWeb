@@ -16,10 +16,15 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import java.lang.Object;
-import    javax.faces.component.UIComponent;
-import        javax.faces.component.UIComponentBase;
-import         javax.faces.component.UIData;
-import                org.primefaces.component.datatable.DataTable;
+import java.util.Arrays;
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIComponentBase;
+import javax.faces.component.UIData;
+import javax.faces.context.FacesContext;
+import org.primefaces.component.datatable.DataTable;
+
 /**
  *
  * @author robso
@@ -27,12 +32,13 @@ import                org.primefaces.component.datatable.DataTable;
 @ManagedBean(name = "moBean")
 @ViewScoped
 public class MovimentacaoMB implements Serializable {
+
     private int id;
     private boolean status;
     private Calendar dataEmissao = Calendar.getInstance();
     private String descricao, categoria;
     private float valor;
-    private Tipo tipo;
+    private List<Tipo> tipos;
     private Gerente gerente;
     private List<Movimentacao> listaMovimentacao = new ArrayList<Movimentacao>();
     private Movimentacao movimentacao;
@@ -40,36 +46,36 @@ public class MovimentacaoMB implements Serializable {
     public MovimentacaoMB() {
         this.movimentacao = new Movimentacao();
     }
-    
-       public String prepararAdicionarMovimentacao() {
+
+    public String prepararAdicionarMovimentacao() {
         movimentacao = new Movimentacao();
         return "gerenciarMovimentacao";
     }
-       
-        public void salvar() {
+
+    public void salvar() {
         try {
             Fachada f = new Fachada();
-         f.inserirMovimentacao(movimentacao);
+            f.inserirMovimentacao(movimentacao);
         } catch (Exception e) {
             e.getMessage();
         }
-    }    
-        
-        public void remove(){
-            try {
-                
-                Fachada f = new Fachada();
-                 for (Movimentacao movimentacao : f.listarMovimentacao()) {
-                         f.removerMovimentacao(movimentacao.getId());
-                         break;
-                 }
-            
-             } catch (Exception e) {
-                 e.getMessage();
-             }
-    }   
-        
-   public void limpar() {
+    }
+
+    public void remove() {
+        try {
+
+            Fachada f = new Fachada();
+            for (Movimentacao movimentacao : f.listarMovimentacao()) {
+                f.removerMovimentacao(movimentacao.getId());
+                break;
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+    public void limpar() {
         movimentacao = new Movimentacao();
     }
 
@@ -82,6 +88,15 @@ public class MovimentacaoMB implements Serializable {
     public void setListaMovimentacao(List<Movimentacao> listaMovimentacao) {
         this.listaMovimentacao = listaMovimentacao;
     }
+
+    public List<Tipo> getTipos() {
+        return tipos;
+    }
+
+    public void setTipos(List<Tipo> tipos) {
+        this.tipos = tipos;
+    }
+
     public int getId() {
         return id;
     }
@@ -130,12 +145,10 @@ public class MovimentacaoMB implements Serializable {
         this.valor = valor;
     }
 
-    public Tipo getTipo() {
-        return tipo;
-    }
+    @PostConstruct
+    public void init() {
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
+        tipos = Arrays.asList(Tipo.values());
     }
 
     public Gerente getGerente() {
@@ -145,7 +158,6 @@ public class MovimentacaoMB implements Serializable {
     public void setGerente(Gerente gerente) {
         this.gerente = gerente;
     }
-
 
     public Movimentacao getMovimentacao() {
         return movimentacao;

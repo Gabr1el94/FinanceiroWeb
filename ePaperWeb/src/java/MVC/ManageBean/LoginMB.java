@@ -9,6 +9,7 @@ import MVC.classes.Funcionario;
 import MVC.classes.Gerente;
 
 import MVC.negocio.Fachada;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;
 import javax.faces.application.FacesMessage;
@@ -33,14 +34,14 @@ public class LoginMB implements Serializable {
     private Gerente gerente;
     private Funcionario funcionario;
 
-
     public LoginMB() {
         this.gerente = new Gerente();
         this.funcionario = new Funcionario();
-        
+
     }
 
     public void efetuarLogin() {
+
         if (tipo.equals("F")) {
             checarFuncionario();
         } else if (tipo.equals("G")) {
@@ -54,7 +55,19 @@ public class LoginMB implements Serializable {
             Fachada f = new Fachada();
             for (Funcionario funcionario1 : f.listarFuncionarios()) {
                 if (funcionario1.getEmail().equals(getEmail()) && funcionario1.getSenha().equals(getSenha())) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Login Com sucesso."));
+                    this.nome = funcionario1.getNome();
+                    this.id = funcionario1.getId();
+                    this.cpf = funcionario1.getCpf();
+                    this.dataNascimento = funcionario1.getDataNascimento();
+                    this.senha = funcionario1.getSenha();
+                    FacesContext facesContext = FacesContext.getCurrentInstance();
+                    HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+                    session.setAttribute("email", getEmail());
+                    session.setAttribute("nome", getNome());
+                    session.setAttribute("cpf", getCpf());
+                    session.setAttribute("id", getId());
+                    session.setAttribute("senha", getSenha());
+                    session.setAttribute("dataNascimento", getDataNascimento());
                     FacesContext.getCurrentInstance().getExternalContext().redirect("faces/funcionario/index.xhtml");
 
                 } else {
@@ -87,8 +100,8 @@ public class LoginMB implements Serializable {
                     session.setAttribute("id", getId());
                     session.setAttribute("senha", getSenha());
                     session.setAttribute("dataNascimento", getDataNascimento());
-                    
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("faces/funcionario/funcionarioDataTable.xhtml");
+
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/index.xhtml");
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Inválido."));
 
@@ -100,8 +113,8 @@ public class LoginMB implements Serializable {
         }
 
     }
-    
-     public void updateGerente() {
+
+    public void updateGerente() {
         try {
             Fachada f = new Fachada();
             gerente.setId(id);
@@ -111,11 +124,14 @@ public class LoginMB implements Serializable {
             gerente.setDataNascimento(dataNascimento);
             gerente.setCpf(cpf);
             f.atualizarGerente(gerente, gerente);
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/atualizar.xhtml");
         } catch (Exception e) {
             e.getMessage();
         }
     }
-  public void updateFuncionario() {
+
+    public void updateFuncionario() {
         try {
             Fachada f = new Fachada();
             funcionario.setId(id);
@@ -124,12 +140,13 @@ public class LoginMB implements Serializable {
             funcionario.setEmail(email);
             funcionario.setDataNascimento(dataNascimento);
             funcionario.setCpf(cpf);
-           
-         f.atualizarFuncionario(funcionario, funcionario);
+
+            f.atualizarFuncionario(funcionario, funcionario);
         } catch (Exception e) {
             e.getMessage();
         }
-  }
+    }
+
     public int getId() {
         return id;
     }
@@ -146,8 +163,6 @@ public class LoginMB implements Serializable {
         this.gerente = gerente;
     }
 
-    
-
     public String getNome() {
         return nome;
     }
@@ -161,7 +176,7 @@ public class LoginMB implements Serializable {
     }
 
     public void setDataNascimento(Calendar dataNascimento) {
-        this.dataNascimento =  dataNascimento;
+        this.dataNascimento = dataNascimento;
     }
 
     public String getCpf() {
@@ -171,7 +186,7 @@ public class LoginMB implements Serializable {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -195,8 +210,6 @@ public class LoginMB implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
- 
 
     public Funcionario getFuncionario() {
         return funcionario;

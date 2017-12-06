@@ -10,5 +10,13 @@ package MVC.classes;
  * @author gabriel
  */
 public enum Tipo {
-    Recebimento, Despesa
+    Recebimento,
+    Despesa;
+
+    private String descricao;
+
+    private Tipo() {
+        descricao = descricao;
+    }
+
 };

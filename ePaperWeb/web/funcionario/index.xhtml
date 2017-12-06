@@ -1,15 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>ePaper - Home</title>
         <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
-         <script type="text/javascript" src="../resources/js/script.js"></script>
-         
+        <script type="text/javascript" src="../resources/js/script.js"></script>
+
     </h:head>
     <h:body>
-        
+        <p>Olá <h5>#{loginMB.gerente.nome}</h5></p>
+        <a href="atualizar.xhtml"><strong>Alterar seus dados</strong></a>
+
+        <p:fieldset legend="Adicionar" toggleable="true" toggleSpeed="500">
+            <p:ajax event="toggle" listener="#{f}"  />
+            <h:panelGrid columns="2" cellpadding="5">
+                <f:view>
+                    <h:form>
+
+                        <h:outputText value="Pago: " />
+                        <p:selectBooleanCheckbox value="#{movBean.movimentacao.status}" /><br class="cle"/>
+
+                        <h:outputText  value="Categoria:" /><br class="cle"/>
+
+                        <p:inputText id="cateoria" value="#{movBean.movimentacao.categoria}" /><br class="cle"/>
+
+                        <h:outputText  value="Descrição:" /><br class="cle"/>
+
+                        <p:inputText id="descricao" value="#{movBean.movimentacao.descricao}" /><br class="cle"/>
+                        <h:outputText  value="Valor:" /><br class="cle"/>
+                        <p:inputText id="valor" value="#{movBean.movimentacao.valor}" >
+                        </p:inputText>
+                        <br class="cle"/>
+                        <h:outputText value="Data Emissão" /><br class="cle"/>
+                        <p:calendar id="emissao" pattern="dd/MM/yyyy" mode="popup"  value="#{movBean.movimentacao.dataEmissao.time}" showOn="button">
+                        </p:calendar>
+                        <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu  id="tipo" value = "#{movBean.movimentacao.tipo}">
+                                <f:selectItem  itemValue = "" itemLabel = "Selecione" />
+                                <f:selectItem  itemValue = "Despesa" itemLabel = "Despesa" />
+                                <f:selectItem itemValue = "Recebimento" itemLabel = "Recebimento" />
+
+                            </p:selectOneMenu></p:outputLabel> <br class="cle"/>
+                        <br class="cle"/><br class="cle"/>
+                        <p:commandButton id="cadastrar" value="Cadastrar" action="#{movBean.salvar()}" />
+                        <p:button value="Limpar" id="limpar" onclick="#{movBean.limpar()}"/>
+
+                        <br class="cle"/>
+
+                    </h:form>
+                </f:view>
+
+            </h:panelGrid>
     </h:body>
 </html>
 

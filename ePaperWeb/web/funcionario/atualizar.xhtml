@@ -7,54 +7,55 @@
     <h:head>
         <title>ePapepr - Aterar</title>
         <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
-         <script type="text/javascript" src="../resources/js/script.js"></script>
+        <script type="text/javascript" src="../resources/js/script.js"></script>
     </h:head>
     <h:body>
-   
+
         <h:panelGrid id="pgHeader" columns="2" cellpadding="4">
             <f:facet name="header">
-                            <p:growl id="messages"/>
-                      <p:menubar>
-                          <p:menuitem value="Home" url="../gerente/index.xhtml" icon="ui-icon-home" />
-                          <p:menuitem value="Movimentação" url="../movimentacao/index.xhtml" icon=" ui-icon-refresh" />
-                          <p:submenu label="Funcionário" icon="ui-icon-person">
-                             <p:menuitem value="Cadastrar" url="cadastro.xhtml" icon="ui-icon-plusthick" />
-                             <p:menuitem value="Consulta" url="consulta.xhtml" icon="ui-icon-search" />
-                          </p:submenu>
-                          <p:menuitem value="Conta" url="../conta/index.xhtml" />
-                      </p:menubar>
-            </f:facet>  
-        </h:panelGrid>     
-        
-               <h:form>
-                    <p:outputLabel for="nome" value="Nome Completo:"><br class="cle"/>
-                        <p:inputText value="#{loginMB.funcionario.nome}"  id="nome"/><br class="cle"/>
-                    </p:outputLabel>
-                     <p:outputLabel for="dataNascimento" value="Data Nascimento:" ><br class="cle"/>
-                         <p:calendar  id="dataNascimento" value="#{loginMB.funcionario.dataNascimento.time}"  pattern="dd/MM/yyyy" mode="popup"  showOn="button">
-                         </p:calendar>
-                    </p:outputLabel><br class="cle"/>
-                    <p:outputLabel for="cpf" value="Cpf:"><br class="cle"/>
-                        <p:inputMask  mask="999.999.999-99" value="#{loginMB.funcionario.cpf}" id="cpf" /><br class="cle"/>
-                    </p:outputLabel>
-                    <p:outputLabel for="email" value="Email:"><br class="cle"/>
-                        <p:inputText  value="#{loginMB.funcionario.email}" id="email"/><br class="cle"/>
-                    </p:outputLabel>
-                    <p:outputLabel for="senha" value="Senha:"><br class="cle"/>
-                        <p:password   value="#{loginMB.funcionario.senha}" id="senha"/><br class="cle"/>
-                    </p:outputLabel>
-                    <p:outputLabel for="reSenha" value="Repetir Senha:"><br class="cle"/>
-                        <p:password value="#{f}"  id="reSenha"/><br class="cle"/>
-                    </p:outputLabel>
-                        <br class="cle"/>
-                        <p:commandButton id="atualizar" value="Atualizar" action="#{loginMB.updateFuncionario()}" />
-                    <p:button value="Limpar" id="limpar" onclick="#{fuBean.limpar()}"/>
-            </h:form>
-        
-         <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
-                    <f:facet name="footer">
-                        <strong>ePaper 2018  - Todos os direitos reservados</strong>
-                    </f:facet>
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem value="Home" url="../gerente/index.xhtml" icon="ui-icon-home" />
+                    <p:menuitem value="Movimentação" url="../movimentacao/index.xhtml" icon=" ui-icon-refresh" />
+                    <p:submenu label="Funcionário" icon="ui-icon-person">
+                        <p:menuitem value="Cadastrar" url="cadastro.xhtml" icon="ui-icon-plusthick" />
+                        <p:menuitem value="Consulta" url="funcionarioDataTable.xhtml" icon="ui-icon-search" />
+                    </p:submenu>
+                    <p:menuitem value="Sair" url="../login.xhtml" />
+                </p:menubar>
+            </f:facet>
+        </h:panelGrid>
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+        <h:form>
+            <p:outputLabel for="nome" value="Nome Completo:"><br class="cle"/>
+                <p:inputText value="#{loginMB.funcionario.nome}"  id="nome"/><br class="cle"/>
+            </p:outputLabel>
+            <p:outputLabel for="dataNascimento" value="Data Nascimento:" ><br class="cle"/>
+                <p:calendar  id="dataNascimento" value="#{loginMB.funcionario.dataNascimento.time}"  pattern="dd/MM/yyyy" mode="popup"  showOn="button">
+                </p:calendar>
+            </p:outputLabel><br class="cle"/>
+            <p:outputLabel for="cpf" value="Cpf:"><br class="cle"/>
+                <p:inputMask  mask="999.999.999-99" value="#{loginMB.funcionario.cpf}" id="cpf" /><br class="cle"/>
+            </p:outputLabel>
+            <p:outputLabel for="email" value="Email:"><br class="cle"/>
+                <p:inputText  value="#{loginMB.funcionario.email}" id="email"/><br class="cle"/>
+            </p:outputLabel>
+            <p:outputLabel for="senha" value="Senha:"><br class="cle"/>
+                <p:password   value="#{loginMB.funcionario.senha}" id="senha"/><br class="cle"/>
+            </p:outputLabel>
+            <p:outputLabel for="reSenha" value="Repetir Senha:"><br class="cle"/>
+                <p:password value="#{f}"  id="reSenha"/><br class="cle"/>
+            </p:outputLabel>
+            <br class="cle"/>
+            <p:commandButton id="atualizar" value="Atualizar" action="#{loginMB.updateFuncionario()}" />
+            <p:button value="Limpar" id="limpar" onclick="#{fuBean.limpar()}"/>
+        </h:form>
+
+        <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
+            <f:facet name="footer">
+                <strong>ePaper 2018  - Todos os direitos reservados</strong>
+            </f:facet>
         </h:panelGrid>
 
     </h:body>

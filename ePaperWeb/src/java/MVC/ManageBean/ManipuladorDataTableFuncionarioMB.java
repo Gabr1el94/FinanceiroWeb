@@ -22,8 +22,9 @@ import org.primefaces.component.datatable.DataTable;
 @ManagedBean(name = "manipuladorDataTableMB")
 @ViewScoped
 public class ManipuladorDataTableFuncionarioMB {
-   private static final long serialVersionUID = 1L;
-    private String nomeFuncionario;      
+
+    private static final long serialVersionUID = 1L;
+    private String nomeFuncionario;
     private DataTable dataTable;
     private List<Funcionario> funcionarios;
     private Fachada f;
@@ -33,36 +34,38 @@ public class ManipuladorDataTableFuncionarioMB {
         this.f = new Fachada();
         listarFuncionarios();
     }
-    
+
     public void listarFuncionarios() {
         Fachada f = new Fachada();
         this.funcionarios = f.listarFuncionarios();
     }
-    public void buscarPeloNome(){
-        for (Funcionario funcionario : f.listarFuncionarios()) {
-                     if(funcionario.getNome().equals(nomeFuncionario)){
-                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Usuário encontrado"));
-                     }else{
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuário inexistente."));
 
-                     }
-                 }
-        
+    public void buscarPeloNome() {
+        for (Funcionario funcionario : f.listarFuncionarios()) {
+            if (funcionario.getNome().equals(nomeFuncionario)) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Usuário encontrado"));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuário inexistente."));
+
+            }
+        }
+
     }
-    public void remove(){
-            try {
-                Funcionario funcionarioSelecionado = (Funcionario) dataTable.getRowData();
-                
-                 for (Funcionario funcionario : f.listarFuncionarios()) {
-                     if(funcionario.getId() == funcionarioSelecionado.getId()){
-                         f.removerFuncionario(funcionario.getId());
-                         break;
-                     }
-                 }
-                
-             } catch (Exception e) {
-                 e.getMessage();
-             }
+
+    public void remove() {
+        try {
+            Funcionario funcionarioSelecionado = (Funcionario) dataTable.getRowData();
+
+            for (Funcionario funcionario : f.listarFuncionarios()) {
+                if (funcionario.getId() == funcionarioSelecionado.getId()) {
+                    f.removerFuncionario(funcionario.getId());
+                    break;
+                }
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     public DataTable getDataTable() {
@@ -88,9 +91,5 @@ public class ManipuladorDataTableFuncionarioMB {
     public void setNomeFuncionario(String nomeFuncionario) {
         this.nomeFuncionario = nomeFuncionario;
     }
-
-  
-
-
 
 }

@@ -7,34 +7,35 @@
     <h:head>
         <title>ePaper - Cadastro Funcionário</title>
         <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
-         <script type="text/javascript" src="../resources/js/script.js"></script>
+        <script type="text/javascript" src="../resources/js/script.js"></script>
     </h:head>
     <h:body>
         <h:panelGrid id="pgHeader" columns="2" cellpadding="4">
             <f:facet name="header">
-                            <p:growl id="messages"/>
-                      <p:menubar>
-                          <p:menuitem value="Home" url="../gerente/index.xhtml" icon="ui-icon-home" />
-                          <p:menuitem value="Movimentação" url="../movimentacao/index.xhtml" icon=" ui-icon-refresh" />
-                          <p:submenu label="Funcionário" icon="ui-icon-person">
-                             <p:menuitem value="Cadastrar" url="cadastro.xhtml" icon="ui-icon-plusthick" />
-                             <p:menuitem value="Consulta" url="consulta.xhtml" icon="ui-icon-search" />
-                          </p:submenu>
-                          <p:menuitem value="Conta" url="../conta/index.xhtml" />
-                      </p:menubar>
-            </f:facet>  
-        </h:panelGrid>     
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem value="Home" url="../gerente/index.xhtml" icon="ui-icon-home" />
+                    <p:menuitem value="Movimentação" url="../movimentacao/indexMov.xhtml" icon=" ui-icon-refresh" />
+                    <p:submenu label="Funcionário" icon="ui-icon-person">
+                        <p:menuitem value="Cadastrar" url="cadastro.xhtml" icon="ui-icon-plusthick" />
+                        <p:menuitem value="Consulta" url="funcionarioDataTable.xhtml" icon="ui-icon-search" />
+                    </p:submenu>
+                    <p:menuitem value="Sair" url="../login.xhtml" />
+                </p:menubar>
+            </f:facet>
+        </h:panelGrid>
+
         <f:view>
             <h:form>
                 <p:outputLabel for="nome" value="Nome Completo:"><br class="cle"/>
-                    <p:inputText value="#{fuBean.funcionario.nome}" required="true" id="nome"/><br class="cle"/>
-                </p:outputLabel> 
+                    <p:inputText  value="#{fuBean.funcionario.nome}" required="true" id="nome"/><br class="cle"/>
+                </p:outputLabel>
                 <p:outputLabel for="dataNascimento" value="Data Nascimento:" ><br class="cle"/>
-                    <p:calendar id="dataNascimento" required="true" pattern="dd/MM/yyyy" mode="popup" value="#{fuBean.funcionario.dataNascimento.time}" showOn="button">
-                 </p:calendar>
+                    <p:calendar  id="dataNascimento" required="true" pattern="dd/MM/yyyy" mode="popup" value="#{fuBean.funcionario.dataNascimento.time}" showOn="button">
+                    </p:calendar>
                 </p:outputLabel><br class="cle"/>
                 <p:outputLabel for="cpf" value="Cpf:"><br class="cle"/>
-                    <p:inputMask mask="999.999.999-99" value="#{fuBean.funcionario.cpf}" id="cpf" /><br class="cle"/>
+                    <p:inputMask required="true" mask="999.999.999-99" value="#{fuBean.funcionario.cpf}" id="cpf" /><br class="cle"/>
                 </p:outputLabel>
                 <p:outputLabel for="email" value="Email:"><br class="cle"/>
                     <p:inputText required="true" value="#{fuBean.funcionario.email}" id="email"/><br class="cle"/>
@@ -42,13 +43,13 @@
                 <p:outputLabel for="senha" value="Senha:"><br class="cle"/>
                     <p:password required="true" value="#{fuBean.funcionario.senha}" id="senha"/><br class="cle"/>
                 </p:outputLabel>
-                
+
                 <br class="cle"/>
                 <p:commandButton id="cadastrar" value="Cadastrar" action="#{fuBean.salvar()}" />
                 <p:button value="Limpar" id="limpar" onclick="#{fuBean.limpar()}"/>
             </h:form>
         </f:view>
-        
+
         <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
             <f:facet name="footer">
                 <strong>ePaper 2018  - Todos os direitos reservados</strong>

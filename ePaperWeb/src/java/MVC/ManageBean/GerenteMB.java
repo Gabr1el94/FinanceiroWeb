@@ -12,30 +12,33 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 
- /*
+/*
  * @author gabriel
  */
 @ManagedBean(name = "geBean")
 @ViewScoped
 public class GerenteMB implements Serializable {
+
     private int id;
     private String nome, email, cpf, senha;
     private Calendar dataNascimento = Calendar.getInstance();
     private Gerente gerente;
     private Gerente gerenteSelecionado;
-  
+
     private List<Gerente> listaGerente = new ArrayList<Gerente>();
-    
+
     public GerenteMB() {
         this.gerente = new Gerente();
-       
+
     }
+
     //Ajax.oncomplete("alert('peek-a-boo');");
     public String prepararAdicionarGerente() {
         gerente = new Gerente();
@@ -49,8 +52,7 @@ public class GerenteMB implements Serializable {
     public void setGerenteSelecionado(Gerente gerenteSelecionado) {
         this.gerenteSelecionado = gerenteSelecionado;
     }
-    
-    
+
     public Gerente getGerente() {
         return gerente;
     }
@@ -60,10 +62,10 @@ public class GerenteMB implements Serializable {
     }
 
     public List<Gerente> getListaGerente() {
-        
-            Fachada f = new Fachada();
-            this.listaGerente = f.listarGerentes();
-            
+
+        Fachada f = new Fachada();
+        this.listaGerente = f.listarGerentes();
+
         return listaGerente;
     }
 
@@ -75,32 +77,34 @@ public class GerenteMB implements Serializable {
         try {
             Fachada f = new Fachada();
             f.inserirGerente(gerente);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Gerente adicionado com sucesso!"));
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/cadastro.xhtml");
         } catch (Exception e) {
             e.getMessage();
         }
     }
 
-    public void remove(){
-            try {
-                
-                Fachada f = new Fachada();
-                 for (Gerente gerente : f.listarGerentes()) {
-                     if(gerente.getId() == this.gerenteSelecionado.getId()){
-                         f.removerGerente(gerente.getId());
-                         break;
-                     }
-                 }
-               FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/consulta.xhtml");
+    public void remove() {
+        try {
 
-             } catch (Exception e) {
-                 e.getMessage();
-             }
+            Fachada f = new Fachada();
+            for (Gerente gerente : f.listarGerentes()) {
+                if (gerente.getId() == this.gerenteSelecionado.getId()) {
+                    f.removerGerente(gerente.getId());
+                    break;
+                }
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
-    
+
     public void limpar() {
         gerente = new Gerente();
     }
-    
+
     public int getId() {
         return id;
     }

@@ -5,10 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>ePaper - Home</title>
-        <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
-        <script type="text/javascript" src="../resources/js/script.js"></script>
-
+        <title>ePaper - Admin</title>
     </h:head>
     <h:body>
         <h:panelGrid id="pgHeader" columns="2" cellpadding="4">
@@ -17,10 +14,9 @@
                 <h:form>
                     <p:menubar>
                         <p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
-                        <p:menuitem value="Movimentação" url="../movimentacao/indexMov.xhtml" icon=" ui-icon-refresh" />
-                        <p:submenu label="Funcionário" icon="ui-icon-person">
-                            <p:menuitem value="Cadastrar" url="../funcionario/cadastro.xhtml" icon="ui-icon-plusthick" />
-                            <p:menuitem value="Consulta" url="../funcionario/funcionarioDataTable.xhtml" icon="ui-icon-search" />
+                        <p:submenu label="Gerente" icon="ui-icon-person">
+                            <p:menuitem value="Cadastrar" url="../gerente/cadastro.xhtml" icon="ui-icon-plusthick" />
+                            <p:menuitem value="Consulta" url="../gerente/gerenteDataTable.xhtml" icon="ui-icon-search" />
                         </p:submenu>
                         <p:menuitem value="Sair" url="../login.xhtml" />
                     </p:menubar>
@@ -28,15 +24,11 @@
             </f:facet>
         </h:panelGrid>
 
-        <p>Olá <h5>#{loginMB.gerente.nome}</h5></p>
-        <a href="atualizar.xhtml"><strong>Alterar seus dados</strong></a>
-
         <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
             <f:facet name="footer">
                 <strong>ePaper 2018  - Todos os direitos reservados</strong>
             </f:facet>
         </h:panelGrid>
-
     </h:body>
 </html>
 

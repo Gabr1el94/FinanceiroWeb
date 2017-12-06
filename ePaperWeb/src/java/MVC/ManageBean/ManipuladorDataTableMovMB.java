@@ -10,8 +10,10 @@ import MVC.classes.Movimentacao;
 import MVC.negocio.Fachada;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.component.datatable.DataTable;
 
 /**
@@ -21,8 +23,9 @@ import org.primefaces.component.datatable.DataTable;
 @ManagedBean(name = "manipuladorDataTableMovMB")
 @ViewScoped
 public class ManipuladorDataTableMovMB {
+
     private static final long serialVersionUID = 1L;
-    private String nomeMovimentacao;      
+    private String nomeMovimentacao;
     private DataTable dataTable;
     private List<Movimentacao> listaMovimentacao;
     private Fachada f;
@@ -32,29 +35,30 @@ public class ManipuladorDataTableMovMB {
         this.f = new Fachada();
         listarMovimentacao();
     }
-    
+
     private void listarMovimentacao() {
-        try{
+        try {
             this.listaMovimentacao = f.listarMovimentacao();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.getMessage();
         }
     }
-    
-    public void remove(){
-            try {
-                Movimentacao movimentacaoSelecionada = (Movimentacao) dataTable.getRowData();
-                
-                 for (Movimentacao mov : f.listarMovimentacao()) {
-                     if(mov.getId() == movimentacaoSelecionada.getId()){
-                         f.removerMovimentacao(mov.getId());
-                         break;
-                     }
-                 }
-                
-             } catch (Exception e) {
-                 e.getMessage();
-             }
+
+    public void remove() {
+        try {
+            Movimentacao movimentacaoSelecionada = (Movimentacao) dataTable.getRowData();
+
+            for (Movimentacao mov : f.listarMovimentacao()) {
+                if (mov.getId() == movimentacaoSelecionada.getId()) {
+                    f.removerMovimentacao(mov.getId());
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Movimentacão com sucesso!"));
+                    break;
+                }
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     public String getNomeMovimentacao() {
@@ -80,6 +84,5 @@ public class ManipuladorDataTableMovMB {
     public void setListaMovimentacao(List<Movimentacao> listaMovimentacao) {
         this.listaMovimentacao = listaMovimentacao;
     }
-    
-    
+
 }

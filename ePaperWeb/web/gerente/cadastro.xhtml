@@ -10,6 +10,23 @@
         <script type="text/javascript" src="../resources/js/script.js"></script>
     </h:head>
     <h:body>
+        <h:panelGrid id="pgHeader" columns="2" cellpadding="4">
+            <f:facet name="header">
+                <p:growl id="messages"/>
+                <h:form>
+                    <p:menubar>
+                        <p:menuitem value="Home" url="../admin/index.xhtml" icon="ui-icon-home" />
+                        <p:submenu label="Gerente" icon="ui-icon-person">
+                            <p:menuitem value="Cadastrar" url="cadastro.xhtml" icon="ui-icon-plusthick" />
+                            <p:menuitem value="Consulta" url="gerenteDataTable.xhtml" icon="ui-icon-search" />
+                        </p:submenu>
+                        <p:menuitem value="Sair" url="../login.xhtml" />
+                    </p:menubar>
+                </h:form>
+            </f:facet>
+        </h:panelGrid>
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
         <h:form>
             <p:outputLabel for="nome" value="Nome Completo:"><br class="cle"/>
                 <p:inputText required="true" value="#{geBean.gerente.nome}" id="nome"/><br class="cle"/>
@@ -37,6 +54,12 @@
             <p:commandButton id="cadastrar" value="Cadastrar" action="#{geBean.salvar()}" />
             <p:button value="Limpar" id="limpar" onclick="#{geBean.limpar()}"/>
         </h:form>
+
+        <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
+            <f:facet name="footer">
+                <strong>ePaper 2018  - Todos os direitos reservados</strong>
+            </f:facet>
+        </h:panelGrid>
 
     </h:body>
 </html>

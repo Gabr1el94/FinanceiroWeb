@@ -1,66 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-          
-      xmlns:p="http://primefaces.org/ui">
 
-   <h:head>
+      xmlns:p="http://primefaces.org/ui" >
+
+    <h:head>
         <title>ePaper - Consulta</title>
-         <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
-         <script type="text/javascript" src="../resources/js/script.js"></script>
+        <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
+        <script type="text/javascript" src="../resources/js/script.js"></script>
     </h:head>
     <h:body>
-        
+        <h:panelGrid id="pgHeader" columns="2" cellpadding="4">
+            <f:facet name="header">
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem value="Home" url="../gerente/index.xhtml" icon="ui-icon-home" />
+                    <p:menuitem value="Movimentação" url="../movimentacao/indexMov.xhtml" icon=" ui-icon-refresh" />
+                    <p:submenu label="Funcionário" icon="ui-icon-person">
+                        <p:menuitem value="Cadastrar" url="cadastro.xhtml" icon="ui-icon-plusthick" />
+                        <p:menuitem value="Consulta" url="funcionarioDataTable.xhtml" icon="ui-icon-search" />
+                    </p:submenu>
+                    <p:menuitem value="Sair" url="../login.xhtml" />
+                </p:menubar>
+            </f:facet>
+        </h:panelGrid>
+
         <h:form id="buscaFuncionario">
             <p:inputText required="true" value="#{manipuladorDataTableMB.nomeFuncionario}" id="nome"/>
             <p:commandButton  icon="ui-icon-search" action="#{manipuladorDataTableMB.buscarPeloNome()}" />
             <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
         </h:form>
         <br class="cle"/>
-        
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
         <f:view>
             <h:form>
-                <p:dataTable binding="#{manipuladorDataTableMB.dataTable}" 
+                <p:dataTable binding="#{manipuladorDataTableMB.dataTable}"
                              value="#{manipuladorDataTableMB.funcionarios}" var="funcionario"
                              selection="single"
                              rowKey="#{manipuladorDataTableMB.funcionarios.id}">
-                             
-                        <f:facet name="header">
-                            Lista de Funcionarios
-                        </f:facet>
-                        
-                        <p:column headerText="Id">
-                            <h:outputText value="#{funcionario.id}" />
-                        </p:column>
-                    
-                        <p:column headerText="Nome">
-                            <h:outputText value="#{funcionario.nome}" />
-                        </p:column>
-                    
-                        <p:column headerText="Cpf">
-                            <h:outputText value="#{funcionario.cpf}" />
-                        </p:column>
-                    
-                         <p:column headerText="Data Nascimento">
-                             <h:outputText  value="#{funcionario.dataNascimento.time}" >
-                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
-                             </h:outputText>
-                        </p:column>
-                    
-                        <p:column headerText="Email">
-                            <h:outputText value="#{funcionario.email}" />
-                        </p:column>
-                        
-                    	<p:column headerText="Remover" style="text-align: center; width: 100px">  
-                            
-                            <h:commandButton value="Deletar" action="#{manipuladorDataTableMB.remove()}"/>
-                        </p:column>	
+
+                    <f:facet name="header">
+                        Lista de Funcionarios
+                    </f:facet>
+
+                    <p:column headerText="Id">
+                        <h:outputText value="#{funcionario.id}" />
+                    </p:column>
+
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{funcionario.nome}" />
+                    </p:column>
+
+                    <p:column headerText="Cpf">
+                        <h:outputText value="#{funcionario.cpf}" />
+                    </p:column>
+
+                    <p:column headerText="Data Nascimento">
+                        <h:outputText  value="#{funcionario.dataNascimento.time}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Email">
+                        <h:outputText value="#{funcionario.email}" />
+                    </p:column>
+
+                    <p:column headerText="Remover" style="text-align: center; width: 100px">
+
+                        <h:commandButton value="Deletar" action="#{manipuladorDataTableMB.remove()}"/>
+                    </p:column>
                 </p:dataTable>
             </h:form>
         </f:view>
-        
+
+        <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
+            <f:facet name="footer">
+                <strong>ePaper 2018  - Todos os direitos reservados</strong>
+            </f:facet>
+        </h:panelGrid>
     </h:body>
 </html>
 

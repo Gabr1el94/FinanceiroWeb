@@ -12,8 +12,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -21,47 +23,48 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean(name = "fuBean")
 @ViewScoped
-public class FuncionarioMB implements Serializable{
-    
+public class FuncionarioMB implements Serializable {
+
     private int id;
     private String nome, email, cpf, senha;
     private Calendar dataNascimento = Calendar.getInstance();
     private Funcionario funcionario;
     private Gerente idGerenteResponsavel;
-  
+
     private List<Funcionario> listaFuncionario = new ArrayList<Funcionario>();
-    
-      public String prepararAdicionarFuncionario() {
+
+    public String prepararAdicionarFuncionario() {
         funcionario = new Funcionario();
         return "gerenciarFuncionario";
-      }
+    }
 
     public FuncionarioMB() {
         this.funcionario = new Funcionario();
     }
-      
+
     public void salvar() {
         try {
             Fachada f = new Fachada();
             f.inserirFuncionario(funcionario);
-            limpar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.FACES_MESSAGES, "Funcionário adicionado com sucesso!"));
+
         } catch (Exception e) {
             e.getMessage();
         }
     }
-    public void remover(){
-    
-       try {
-                
-                Fachada f = new Fachada();
-                 for (Funcionario funcionario : f.listarFuncionarios()) {
-                         f.removerFuncionario(funcionario.getId());
-                         break;
-                 }
-       
-             } catch (Exception e) {
-                 e.getMessage();
-             }
+
+    public void remover() {
+
+        try {
+            Fachada f = new Fachada();
+            for (Funcionario funcionario : f.listarFuncionarios()) {
+                f.removerFuncionario(funcionario.getId());
+                break;
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
 
     }
 
@@ -78,6 +81,7 @@ public class FuncionarioMB implements Serializable{
     public void setListaFuncionario(List<Funcionario> listaFuncionario) {
         this.listaFuncionario = listaFuncionario;
     }
+
     public int getId() {
         return id;
     }
@@ -142,5 +146,4 @@ public class FuncionarioMB implements Serializable{
         this.idGerenteResponsavel = idGerenteResponsavel;
     }
 
- 
 }
