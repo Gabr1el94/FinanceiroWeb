@@ -12,6 +12,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlDataTable;
+import javax.faces.context.FacesContext;
+import org.primefaces.component.datatable.DataTable;
 
 /**
  *
@@ -19,13 +21,13 @@ import javax.faces.component.html.HtmlDataTable;
  */
 @ManagedBean(name = "manipuladorDataTableMB")
 @ViewScoped
-public class ManipuladorDataTableMB {
+public class ManipuladorDataTableGerenteMB {
     private static final long serialVersionUID = 1L;
           
-    private HtmlDataTable dataTable;
+    private DataTable dataTable;
     private List<Gerente> gerentes;
 
-    public ManipuladorDataTableMB() {
+    public ManipuladorDataTableGerenteMB() {
         gerentes = new ArrayList<Gerente>();
         listarGerentes();
     }
@@ -34,16 +36,28 @@ public class ManipuladorDataTableMB {
         Fachada f = new Fachada();
         this.gerentes = f.listarGerentes();
     }
-    
-    public void selecionarLinha(){
-           Gerente gerenteSelecionado = (Gerente) dataTable.getRowData();
-      }
 
-    public HtmlDataTable getDataTable() {
+    public void remove(){
+            try {
+                Gerente gerenteSelecionado = (Gerente) dataTable.getRowData();
+                Fachada f = new Fachada();
+                 for (Gerente gerente : f.listarGerentes()) {
+                     if(gerente.getId() == gerenteSelecionado.getId()){
+                         f.removerGerente(gerente.getId());
+                         break;
+                     }
+                 }
+                
+             } catch (Exception e) {
+                 e.getMessage();
+             }
+    }
+
+    public DataTable getDataTable() {
         return dataTable;
     }
 
-    public void setDataTable(HtmlDataTable dataTable) {
+    public void setDataTable(DataTable dataTable) {
         this.dataTable = dataTable;
     }
 
