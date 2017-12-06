@@ -53,6 +53,13 @@
                          <h:outputText value="Data Emissão" /><br class="cle"/>
                             <p:calendar id="emissao" pattern="dd/MM/yyyy" mode="popup" showOn="button">
                             </p:calendar>
+                         <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu  id="tipo" value = "#{loginMB.tipo}">
+                 
+                            <f:selectItem  itemValue = "" itemLabel = "Selecione" /> 
+                            <f:selectItem  itemValue = "F" itemLabel = "Despesa" /> 
+                            <f:selectItem itemValue = "G" itemLabel = "Pagamento" /> 
+                 
+                        </p:selectOneMenu></p:outputLabel> <br class="cle"/>
                          <br class="cle"/><br class="cle"/>
                           <p:commandButton id="cadastrar" value="Cadastrar" action="#{d}" />
                           <p:button value="Limpar" id="limpar" onclick="#{f}"/>

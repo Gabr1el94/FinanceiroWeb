@@ -15,6 +15,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 
  /*
@@ -89,7 +90,8 @@ public class GerenteMB implements Serializable {
                          break;
                      }
                  }
-            
+               FacesContext.getCurrentInstance().getExternalContext().redirect("faces/gerente/consulta.xhtml");
+
              } catch (Exception e) {
                  e.getMessage();
              }

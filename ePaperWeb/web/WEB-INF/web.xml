@@ -30,6 +30,6 @@
         <welcome-file>faces/gerente/atualizar.xhtml</welcome-file>
         <welcome-file>faces/gerente/consulta.xhtml</welcome-file>
         <welcome-file>faces/funcinario/consulta.xhtml</welcome-file>
-        <welcome-file>faces/gerente/gerent/gerenteDataTable.xhtml</welcome-file>
+        <welcome-file>faces/gerente/gerenteDataTable.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>
