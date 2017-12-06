@@ -6,7 +6,6 @@
 package MVC.ManageBean;
 
 import MVC.classes.Funcionario;
-import MVC.classes.Gerente;
 import MVC.negocio.Fachada;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -23,61 +23,78 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class FuncionarioMB implements Serializable{
     
-    private int id;
+   private int id;
     private String nome, email, cpf, senha;
     private Calendar dataNascimento = Calendar.getInstance();
-    private Funcionario funcionario;
-    private Gerente idGerenteResponsavel;
+   private Funcionario funcionario;
+    private Funcionario funcionarioSelecionado;
   
     private List<Funcionario> listaFuncionario = new ArrayList<Funcionario>();
     
-      public String prepararAdicionarFuncionario() {
-        funcionario = new Funcionario();
-        return "gerenciarFuncionario";
-      }
-
     public FuncionarioMB() {
         this.funcionario = new Funcionario();
-    }
-      
-    public void salvar() {
-        try {
-            Fachada f = new Fachada();
-            f.inserirFuncionario(funcionario);
-            limpar();
-        } catch (Exception e) {
-            e.getMessage();
-        }
-    }
-    public void remover(){
-    
-       try {
-                
-                Fachada f = new Fachada();
-                 for (Funcionario funcionario : f.listarFuncionarios()) {
-                         f.removerFuncionario(funcionario.getId());
-                         break;
-                 }
        
-             } catch (Exception e) {
-                 e.getMessage();
-             }
-
+    }
+    //Ajax.oncomplete("alert('peek-a-boo');");
+    public String prepararAdicionarFuncionario() {
+        funcionario = new Funcionario();
+        return "gerenciarFuncionario";
     }
 
-    public void limpar() {
-        funcionario = new Funcionario();
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public Funcionario getFuncionarioSelecionado() {
+        return funcionarioSelecionado;
+    }
+
+    public void setFuncionarioSelecionado(Funcionario funcionarioSelecionado) {
+        this.funcionarioSelecionado = funcionarioSelecionado;
     }
 
     public List<Funcionario> getListaFuncionario() {
-        Fachada f = new Fachada();
-        listaFuncionario = f.listarFuncionarios();
         return listaFuncionario;
     }
 
     public void setListaFuncionario(List<Funcionario> listaFuncionario) {
         this.listaFuncionario = listaFuncionario;
     }
+
+    public void salvar() {
+        try {
+            Fachada f = new Fachada();
+            f.inserirFuncionario(funcionario);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+    public void remove(){
+            try {
+                
+                Fachada f = new Fachada();
+                 for (Funcionario funcionario : f.listarFuncionarios()) {
+                     if(funcionario.getId() == this.funcionarioSelecionado.getId()){
+                         f.removerFuncionario(funcionario.getId());
+                         break;
+                     }
+                 }
+               FacesContext.getCurrentInstance().getExternalContext().redirect("faces/funcionario/consulta.xhtml");
+
+             } catch (Exception e) {
+                 e.getMessage();
+             }
+    }
+    
+    public void limpar() {
+        funcionario = new Funcionario();
+    }
+    
     public int getId() {
         return id;
     }
@@ -124,22 +141,6 @@ public class FuncionarioMB implements Serializable{
 
     public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
-    }
-
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
-    public Gerente getIdGerenteResponsavel() {
-        return idGerenteResponsavel;
-    }
-
-    public void setIdGerenteResponsavel(Gerente idGerenteResponsavel) {
-        this.idGerenteResponsavel = idGerenteResponsavel;
     }
 
  
