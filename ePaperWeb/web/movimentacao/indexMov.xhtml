@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>ePaper - Movimentação</title>
+        <link rel="StyleSheet" type="text/css" href="../resources/css/style.css" media="screen" />
+        <script type="text/javascript" src="../resources/js/script.js"></script>
+      
+    </h:head>
+    <h:body>
+        
+           <h:panelGrid id="pgHeader" columns="2" cellpadding="4">
+                    <f:facet name="header">
+                            <p:growl id="messages"/>
+                    <h:form>
+                          <p:menubar>
+                                <p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
+                                <p:menuitem value="Movimentação" url="../movimentacao/index.xhtml" icon=" ui-icon-refresh" />
+                                <p:submenu label="Funcionário" icon="ui-icon-person">
+                                   <p:menuitem value="Cadastrar" url="../funcionario/cadastro.xhtml" icon="ui-icon-plusthick" />
+                                   <p:menuitem value="Consulta" url="../funcionario/consulta.xhtml" icon="ui-icon-search" />
+                                </p:submenu>
+                                <p:menuitem value="Conta" url="../conta/index.xhtml" />
+                          </p:menubar>
+                  </h:form>
+                  </f:facet>  
+          </h:panelGrid>
+        
+        <p:fieldset legend="Adicionar" toggleable="true" toggleSpeed="500">
+            <p:ajax event="toggle" listener="#{f}"  />
+            <h:panelGrid columns="2" cellpadding="5">
+                <f:view>
+                    <h:form>
+                         
+                        <h:outputText value="Pago: " />
+                        <p:selectBooleanCheckbox value="#{movBean.movimentacao.status}" /><br class="cle"/>
+                         
+                         <h:outputText  value="Categoria:" /><br class="cle"/>
+                         
+                         <p:inputText id="cateoria" value="#{movBean.movimentacao.categoria}" /><br class="cle"/>
+                         
+                         <h:outputText  value="Descrição:" /><br class="cle"/>
+                         
+                         <p:inputText id="descricao" value="#{movBean.movimentacao.descricao}" /><br class="cle"/>
+                         <h:outputText  value="Valor:" /><br class="cle"/>
+                         <p:inputText id="valor" value="#{movBean.movimentacao.valor}" >
+                              <f:convertNumber integerOnly="true" />
+                         </p:inputText>
+                         <br class="cle"/>
+                         <h:outputText value="Data Emissão" /><br class="cle"/>
+                         <p:calendar id="emissao" pattern="dd/MM/yyyy" mode="popup"  value="#{movBean.movimentacao.dataEmissao.time}" showOn="button">
+                            </p:calendar>
+                         <p:outputLabel  value="Tipo:"><br class="cle"/><p:selectOneMenu  id="tipo" value = "#{movBean.movimentacao.tipo}">
+                 
+                            <f:selectItem  itemValue = "" itemLabel = "Selecione" /> 
+                            <f:selectItem  itemValue = "F" itemLabel = "Despesa" /> 
+                            <f:selectItem itemValue = "G" itemLabel = "Pagamento" /> 
+                 
+                        </p:selectOneMenu></p:outputLabel> <br class="cle"/>
+                         <br class="cle"/><br class="cle"/>
+                         <p:commandButton id="cadastrar" value="Cadastrar" action="#{movBean.salvar()}" />
+                         <p:button value="Limpar" id="limpar" onclick="#{movBean.limpar()}"/>
+                         
+                        <br class="cle"/>
+                        
+                    </h:form>
+                </f:view>
+                
+            </h:panelGrid>
+            
+        </p:fieldset>
+      
+        <br class="cle"/><br class="cle"/><br class="cle"/>
+       
+       <p:fieldset legend="Dados Cadastrados" toggleable="true" toggleSpeed="500">
+            <p:ajax event="toggle" listener="#{f}"  />
+            <h:panelGrid columns="2" cellpadding="5">
+               <h:form>
+                   <p:dataTable binding="#{manipuladorDataTableMovMB.dataTable}" 
+                                value="#{manipuladorDataTableMovMB.listaMovimentacao}" var="movimentacao"
+                             selection="single"
+                             rowKey="#{manipuladorDataTableMovMB.listaMovimentacao.id}">
+                             
+                        <f:facet name="header">
+                            Lista de Movimentação
+                        </f:facet>
+                        
+                        <p:column headerText="Pago">
+                            <h:outputText value="#{movimentacao.status}" />
+                        </p:column>
+                    
+                        <p:column headerText="Descrição">
+                            <h:outputText value="#{movimentacao.descricao}" />
+                        </p:column>
+                    
+                        <p:column headerText="Emissão">
+                            <h:outputText  value="#{movimentacao.dataEmissao.time}" >
+                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputText>
+                        </p:column>
+                    
+                         <p:column headerText="Tipo">
+                             <h:outputText  value="#{movimentacao.tipo}" />
+                        </p:column>
+   
+                    	<p:column headerText="Remover" style="text-align: center; width: 100px">  
+                            
+                            <h:commandButton value="Deletar" action="#{manipuladorDataTableMovMB.remove()}"/>
+                        </p:column>	
+                </p:dataTable>
+
+        </h:form>
+        </h:panelGrid>
+       </p:fieldset>
+                 
+                <br class="cle"/><br class="cle"/><br class="cle"/>
+
+         <p:separator />
+         
+        <h:panelGrid id="pgFooter" columns="2" cellpadding="4">
+            <f:facet name="footer">
+                <strong>ePaper 2018  - Todos os direitos reservados</strong>
+            </f:facet>
+        </h:panelGrid>
+    </h:body>
+</html>
+

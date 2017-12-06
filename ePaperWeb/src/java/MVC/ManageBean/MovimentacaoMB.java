@@ -27,7 +27,7 @@ import                org.primefaces.component.datatable.DataTable;
 @ManagedBean(name = "moBean")
 @ViewScoped
 public class MovimentacaoMB implements Serializable {
-     private int id;
+    private int id;
     private boolean status;
     private Calendar dataEmissao = Calendar.getInstance();
     private String descricao, categoria;
